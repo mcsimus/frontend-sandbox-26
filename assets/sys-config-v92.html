@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Sistem Aromabar - Simulare 1:1 Fullscreen (v91)</title>
+    <title>Sistem Aromabar - Simulare 1:1 Fullscreen (v92)</title>
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"> 
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
@@ -46,9 +46,6 @@
 
         /* Am șters "position: absolute", astfel încât SVG-ul devine baza cutiei */
         .overlay-svg { display: block; width: 100%; height: 100%; z-index: 2; overflow: visible; }
-
-
-
         .overlay-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; overflow: visible; }
 
         /* ================= ANIMAȚII & FSM ================= */
@@ -171,62 +168,65 @@
             .header, .interactive-container { display: none !important; }
         }
 
-        /* Maximzare spațiu + Modificare Aspect Ratio pe Mobil Landscape */
-        @media screen and (max-width: 1000px) and (orientation: landscape) {
-            .header { display: none !important; }
-            body { padding: 3vh 2vw !important; }
-            /* Raport optimizat. Panoul din dreapta va avea aprox 36% din lățime */
-            .aspect-wrapper { aspect-ratio: 7561.51 / 3109.91 !important; }
-            
-            /* Micșorarea legendei pentru a nu acoperi ecranul telefonului */
-            .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 5vh; gap: 10px; }
-            .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
-            .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
-            .tooltip-title { font-size: 13px; margin-bottom: 4px; }
-            .tooltip-desc { font-size: 11px; line-height: 1.2; }
-        }
-/* ================= COMUTATOR LEGENDE (UI SIMULATOR) ================= */
+        /* ================= COMUTATOR INFO FIXAT STÂNGA JOS ================= */
         .info-toggle-container {
-            position: absolute; top: 3vh; right: 2vw;
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(15, 23, 42, 0.85); padding: 8px 16px;
-            border-radius: 30px; border: 1px solid #334155;
-            z-index: 100; backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: fixed; 
+            bottom: 3vh; 
+            left: 2vw;
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.75); 
+            padding: 6px 14px;
+            border-radius: 20px; 
+            border: 1px solid #334155;
+            z-index: 9999; /* Să fie mereu deasupra oricărui element */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .info-toggle-label {
-            color: #94a3b8; font-size: 13px; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 1px;
+            color: #94a3b8; 
+            font-size: 13px; 
+            font-weight: 900;
+            text-transform: uppercase; 
+            letter-spacing: 1px;
         }
         .info-switch {
-            position: relative; display: inline-block;
-            width: 44px; height: 24px;
+            position: relative; 
+            display: inline-block;
+            width: 36px; 
+            height: 20px;
         }
         .info-switch input { opacity: 0; width: 0; height: 0; }
         .info-slider {
             position: absolute; cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #475569; transition: .3s; border-radius: 24px;
+            background-color: #475569; transition: .3s; border-radius: 20px;
         }
         .info-slider:before {
             position: absolute; content: "";
-            height: 18px; width: 18px; left: 3px; bottom: 3px;
+            height: 14px; width: 14px; left: 3px; bottom: 3px;
             background-color: white; transition: .3s; border-radius: 50%;
         }
         .info-switch input:checked + .info-slider { background-color: #38bdf8; }
-        .info-switch input:checked + .info-slider:before { transform: translateX(20px); }
+        .info-switch input:checked + .info-slider:before { transform: translateX(16px); }
 
-        /* Poziționare pe telefon (peisaj) - îl mutăm jos în dreapta ca să nu deranjeze */
+        /* Maximzare spațiu + Modificare Aspect Ratio pe Mobil Landscape */
         @media screen and (max-width: 1000px) and (orientation: landscape) {
-            .info-toggle-container {
-                top: auto; bottom: 5vh; right: 2vw; padding: 6px 12px; gap: 8px;
-            }
+            .header { display: none !important; }
+            body { padding: 3vh 2vw !important; }
+            .aspect-wrapper { aspect-ratio: 7561.51 / 3109.91 !important; }
+            
+            .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 5vh; gap: 10px; }
+            .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
+            .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
+            .tooltip-title { font-size: 13px; margin-bottom: 4px; }
+            .tooltip-desc { font-size: 11px; line-height: 1.2; }
+            
+            /* Ajustare buton info pentru telefon */
+            .info-toggle-container { bottom: 5vh; left: 2vw; }
             .info-toggle-label { font-size: 11px; }
-            .info-switch { width: 36px; height: 20px; }
-            .info-slider:before { height: 14px; width: 14px; left: 3px; bottom: 3px; }
-            .info-switch input:checked + .info-slider:before { transform: translateX(16px); }
         }
-        
     </style>
 </head>
 <body class="master-off">
@@ -246,20 +246,18 @@
         <p>Treceți cu mouse-ul peste etichete. <strong>Panoul din dreapta și elementele hardware reacționează la click.</strong></p>
     </header>
 
-    <main class="interactive-container">
-        <!-- COMUTATOR AFIȘARE LEGENDE -->
-        <div class="info-toggle-container">
-            <span class="info-toggle-label">Legende Info</span>
-            <label class="info-switch">
-                <input type="checkbox" id="toggle-info-btn" checked>
-                <span class="info-slider"></span>
-            </label>
-        </div>
-        <div class="aspect-wrapper">
-            
+    <!-- COMUTATOR INFO FIXAT STÂNGA JOS -->
+    <div class="info-toggle-container">
+        <span class="info-toggle-label">INFO</span>
+        <label class="info-switch">
+            <input type="checkbox" id="toggle-info-btn" checked>
+            <span class="info-slider"></span>
+        </label>
+    </div>
 
+    <main class="interactive-container">
+        <div class="aspect-wrapper">
             <!-- GRID SVG VECTORIAL -->
-            <!-- viewBox-ul este manipulat de JS pentru Mobile -->
             <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                     <filter id="mist-blur" x="-100%" y="-100%" width="300%" height="300%">
@@ -503,16 +501,13 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Stare globală pentru legende
-            window.isInfoEnabled = true;
-            
+            // Logica buton ascundere
             const toggleInfoBtn = document.getElementById('toggle-info-btn');
             if (toggleInfoBtn) {
                 toggleInfoBtn.addEventListener('change', (e) => {
-                    window.isInfoEnabled = e.target.checked;
-                    // Dacă s-a debifat, ascundem legenda instant
-                    if (!window.isInfoEnabled) {
-                        document.getElementById('info-card').classList.remove('active');
+                    if (!e.target.checked) {
+                        const infoCard = document.getElementById('info-card');
+                        if (infoCard) infoCard.classList.remove('active');
                         clearAllHighlights(); 
                     }
                 });
@@ -588,8 +583,10 @@
             }
 
             function showTooltip(type, channelNum) {
-                if (!window.isInfoEnabled) return; // Oprește legenda dacă butonul e pe OFF
-                // ... restul funcției rămâne neschimbat ...
+                // Oprește legenda instant dacă butonul INFO nu este bifat
+                const infoToggle = document.getElementById('toggle-info-btn');
+                if (infoToggle && !infoToggle.checked) return;
+
                 let tagStr = "", colorHex = "#f8fafc", title = "", desc = "";
                 tTag.classList.remove('usb-shape');
 
