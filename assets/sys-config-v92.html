@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Sistem Aromabar - Simulare 1:1 Fullscreen (v101)</title>
+    <title>Sistem AromaTasteBar - atb-v102</title>
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"> 
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
@@ -165,7 +165,8 @@
 
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
-            body { padding: 0 !important; height: 100svh !important; height: 100dvh !important; }
+            /* Spațiu suplimentar sus și jos pentru a forța retractarea barei de adrese */
+            body { padding: 1.5vh 1vw !important; height: 103svh !important; height: 103dvh !important; }
             .aspect-wrapper {
                 position: relative; 
                 width: 100%; height: auto; 
@@ -514,7 +515,7 @@
                     // Modificarea 3: Recentrare master buttons grup mutat mai spre stânga (-3030)
                     if (btnJos) btnJos.setAttribute("transform", "translate(-3030, -1800) scale(1.6)");
 
-                    // Modificarea 1: Mărire vizuală +50% pentru switch INFO pe telefon (scale 2.0)
+                    // Modificarea 1: Mărire vizuală suplimentară cu +50% pentru switch INFO pe telefon (scale 2.0)
                     if (infoSwitch) infoSwitch.setAttribute("transform", "translate(150, 120) scale(2.0)");
 
                     // Modificarea 2: Redimensionare butoane master și centrare etichete (I și 0)
@@ -554,10 +555,11 @@
             mediaQuery.addEventListener("change", handleOrientationChange);
             handleOrientationChange(mediaQuery);
 
-            // Modificarea 4: Ascunderea barei de adrese la primul tap pe mobil
+            // Modificarea 4: Ascunderea barei de adrese prin micro-scroll automat la primul tap pe mobil
             document.addEventListener('touchstart', () => {
                 if (window.innerWidth <= 1000) {
-                    window.scrollTo(0, 1);
+                    window.scrollTo(0, 40);
+                    setTimeout(() => window.scrollTo(0, 0), 100);
                     if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
                         document.documentElement.requestFullscreen().catch(() => {});
                     }
