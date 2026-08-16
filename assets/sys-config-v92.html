@@ -215,21 +215,17 @@
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
             body { padding: 3vh 2vw !important; }
+            
+            /* Restabilim raportul lărgit forțat pe telefon și umplerea ecranului */
             .aspect-wrapper {
-            position: relative; 
-            width: 100%; 
-            height: auto; 
-            max-width: 100%; 
-            max-height: 100%;
-            aspect-ratio: 6561.51 / 3109.91; 
-            border: none; /* Am scos chenarul ca să nu mai creeze un cadru dublu artificial */
-            border-radius: 0; 
-            box-shadow: none; 
-            background: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+                aspect-ratio: 7561.51 / 3109.91 !important; 
+                width: 100% !important; 
+                height: 100% !important; 
+                border: none !important; 
+                border-radius: 0 !important; 
+                box-shadow: none !important; 
+                background: transparent !important;
+            }
             
             .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 5vh; gap: 10px; }
             .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
