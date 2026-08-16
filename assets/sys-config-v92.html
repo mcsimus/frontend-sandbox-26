@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Sistem AromaTasteBar - atb-v102</title>
+    <title>Sistem AromaTasteBar - atb-v104</title>
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"> 
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
@@ -12,6 +12,14 @@
     <meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet">
     <meta name="yandexbot" content="noindex, nofollow, noarchive, nosnippet">
     
+    <!-- Meta etichete pentru Add to Home Screen (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AromaTasteBar">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
@@ -22,7 +30,7 @@
             color: #f8fafc;
             margin: 0; padding: 1vh 2vw 7vh 2vw; 
             display: flex; flex-direction: column; align-items: center;
-            height: 100vh; height: 100dvh; height: 100svh; overflow: hidden; 
+            height: 100vh; height: 100dvh; overflow: hidden; 
         }
 
         .header { text-align: center; margin-bottom: 1vh; flex-shrink: 0; }
@@ -165,8 +173,7 @@
 
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
-            /* Spațiu suplimentar sus și jos pentru a forța retractarea barei de adrese */
-            body { padding: 1.5vh 1vw !important; height: 103svh !important; height: 103dvh !important; }
+            body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
             .aspect-wrapper {
                 position: relative; 
                 width: 100%; height: auto; 
@@ -512,13 +519,9 @@
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (hitB1Hold) hitB1Hold.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     
-                    // Modificarea 3: Recentrare master buttons grup mutat mai spre stânga (-3030)
                     if (btnJos) btnJos.setAttribute("transform", "translate(-3030, -1800) scale(1.6)");
-
-                    // Modificarea 1: Mărire vizuală suplimentară cu +50% pentru switch INFO pe telefon (scale 2.0)
                     if (infoSwitch) infoSwitch.setAttribute("transform", "translate(150, 120) scale(2.0)");
 
-                    // Modificarea 2: Redimensionare butoane master și centrare etichete (I și 0)
                     if (autBtn && ledBtn) {
                         autBtn.setAttribute("width", "104.8");
                         autBtn.setAttribute("x", "5913.53");
@@ -538,7 +541,6 @@
                     if (btnJos) btnJos.removeAttribute("transform");
                     if (hitB1Hold) hitB1Hold.removeAttribute("transform");
 
-                    // Reset desktop
                     if (infoSwitch) infoSwitch.setAttribute("transform", "translate(180, 150)");
                     if (autBtn && ledBtn) {
                         autBtn.setAttribute("width", "74.44");
@@ -554,17 +556,6 @@
             }
             mediaQuery.addEventListener("change", handleOrientationChange);
             handleOrientationChange(mediaQuery);
-
-            // Modificarea 4: Ascunderea barei de adrese prin micro-scroll automat la primul tap pe mobil
-            document.addEventListener('touchstart', () => {
-                if (window.innerWidth <= 1000) {
-                    window.scrollTo(0, 40);
-                    setTimeout(() => window.scrollTo(0, 0), 100);
-                    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-                        document.documentElement.requestFullscreen().catch(() => {});
-                    }
-                }
-            }, { once: true, passive: true });
 
             const triggers = document.querySelectorAll('.t-trigger');
             const infoCard = document.getElementById('info-card');
