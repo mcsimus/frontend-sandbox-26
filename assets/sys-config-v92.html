@@ -22,7 +22,7 @@
             color: #f8fafc;
             margin: 0; padding: 1vh 2vw 7vh 2vw; 
             display: flex; flex-direction: column; align-items: center;
-            height: 100vh; height: 100dvh; overflow: hidden; 
+            height: 100vh; height: 100dvh; height: 100svh; overflow: hidden; 
         }
 
         .header { text-align: center; margin-bottom: 1vh; flex-shrink: 0; }
@@ -419,12 +419,12 @@
                             <rect id="buton_master_automatizare" class="toggle-btn off t-trigger" data-type="master_aut" fill="#E53224" stroke="#FFFEFC" stroke-width="3.18" x="5933.93" y="2609.3" width="74.44" height="186.54"/>
                             <polygon id="aut_on_icon" class="icon-on" fill="#000000" points="5973.96,2635.96 5973.96,2663.7 5968.34,2663.7 5968.34,2635.96 "/>
                             <path id="aut_off_icon" class="icon-off" fill="#ffffff" d="M5970.99 2721.17c2.69,0 4.79,0.96 6.3,2.89 1.8,2.27 2.71,6.05 2.71,11.32 0,5.26 -0.91,9.05 -2.72,11.34 -1.5,1.9 -3.6,2.85 -6.28,2.85 -2.69,0 -4.87,-1.04 -6.53,-3.12 -1.65,-2.08 -2.48,-5.79 -2.48,-11.13 0,-5.24 0.91,-9.01 2.72,-11.31 1.5,-1.9 3.6,-2.85 6.28,-2.85zm0 4.42c-0.63,0 -1.2,0.21 -1.69,0.62 -0.5,0.41 -0.89,1.14 -1.16,2.21 -0.36,1.37 -0.54,3.7 -0.54,6.96 0,3.27 0.16,5.51 0.48,6.73 0.33,1.22 0.73,2.03 1.22,2.44 0.49,0.41 1.05,0.61 1.68,0.61 0.64,0 1.2,-0.21 1.7,-0.62 0.49,-0.41 0.88,-1.14 1.15,-2.21 0.36,-1.36 0.54,-3.68 0.54,-6.94 0,-3.26 -0.15,-5.5 -0.48,-6.72 -0.32,-1.22 -0.73,-2.04 -1.22,-2.45 -0.49,-0.41 -1.05,-0.62 -1.69,-0.62z"/>
-                            <polyline fill="none" stroke="#FFFEFC" stroke-width="3.18" points="6008.37,2774.27 5933.93,2774.27 5933.93,2617.24 6008.37,2617.24 6008.37,2774.27 " pointer-events="none"/>
+                            <polyline id="aut_polyline" fill="none" stroke="#FFFEFC" stroke-width="3.18" points="6008.37,2774.27 5933.93,2774.27 5933.93,2617.24 6008.37,2617.24 6008.37,2774.27 " pointer-events="none"/>
                             
                             <rect id="buton_master_led" class="toggle-btn off t-trigger" data-type="master_led" fill="#E53224" stroke="#FFFEFC" stroke-width="3.18" x="6022.91" y="2609.3" width="74.44" height="186.54"/>
                             <polygon id="led_on_icon" class="icon-on" fill="#000000" points="6097.34,2635.96 6097.34,2663.7 6091.72,2663.7 6091.72,2635.96 " transform="translate(-31.5, 0)"/>
                             <path id="led_off_icon" class="icon-off" fill="#ffffff" d="M6060.55 2721.17c2.69,0 4.79,0.96 6.3,2.89 1.8,2.27 2.71,6.05 2.71,11.32 0,5.26 -0.91,9.05 -2.73,11.34 -1.5,1.9 -3.59,2.85 -6.28,2.85 -2.69,0 -4.87,-1.04 -6.53,-3.12 -1.65,-2.08 -2.48,-5.79 -2.48,-11.13 0,-5.24 0.91,-9.01 2.72,-11.31 1.5,-1.9 3.6,-2.85 6.28,-2.85zm0 4.42c-0.63,0 -1.2,0.21 -1.69,0.62 -0.5,0.41 -0.89,1.14 -1.16,2.21 -0.36,1.37 -0.54,3.7 -0.54,6.96 0,3.27 0.16,5.51 0.48,6.73 0.33,1.22 0.73,2.03 1.22,2.44 0.49,0.41 1.05,0.61 1.68,0.61 0.64,0 1.2,-0.21 1.7,-0.62 0.49,-0.41 0.88,-1.14 1.15,-2.21 0.36,-1.36 0.54,-3.68 0.54,-6.94 0,-3.26 -0.15,-5.5 -0.48,-6.72 -0.32,-1.22 -0.73,-2.04 -1.22,-2.45 -0.49,-0.41 -1.05,-0.62 -1.69,-0.62z"/>
-                            <polyline fill="none" stroke="#FFFEFC" stroke-width="3.18" points="6097.34,2774.27 6022.9,2774.27 6022.9,2617.24 6097.34,2617.24 6097.34,2774.27 " pointer-events="none"/>
+                            <polyline id="led_polyline" fill="none" stroke="#FFFEFC" stroke-width="3.18" points="6097.34,2774.27 6022.9,2774.27 6022.9,2617.24 6097.34,2617.24 6097.34,2774.27 " pointer-events="none"/>
                             
                             <text id="eticheta_on_butoane_master" class="fade-element" x="5913.53" y="2555.53" fill="#FFFEFC" font-weight="bold" font-size="152.23px" font-family="Arial" pointer-events="none">On</text>
                             <text id="eticheta_off_butoane_master" class="fade-element" x="5901.88" y="2969.39" fill="#FFFEFC" font-weight="bold" font-size="152.23px" font-family="Arial" pointer-events="none">Off</text>
@@ -491,6 +491,11 @@
                 const btnSus = document.getElementById("butoane_sus");
                 const btnJos = document.getElementById("butoane_jos_master");
                 const hitB1Hold = document.getElementById("hitbox_b1_hold");
+                const infoSwitch = document.getElementById("info-switch-svg");
+                const autBtn = document.getElementById("buton_master_automatizare");
+                const ledBtn = document.getElementById("buton_master_led");
+                const autPoly = document.getElementById("aut_polyline");
+                const ledPoly = document.getElementById("led_polyline");
 
                 if (e.matches) {
                     mainSvg.setAttribute("viewBox", "0 0 7561.51 3109.91"); 
@@ -500,6 +505,19 @@
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (hitB1Hold) hitB1Hold.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (btnJos) btnJos.setAttribute("transform", "translate(-2900, -1800) scale(1.6)");
+
+                    // Modificarea 1: Scalare mărită pentru switch INFO pe telefon
+                    if (infoSwitch) infoSwitch.setAttribute("transform", "translate(150, 120) scale(1.35)");
+
+                    // Modificarea 2: Redimensionare și recentrare butoane master pe axa LCD-ului (lățime = 104.8 referință B2)
+                    if (autBtn && ledBtn) {
+                        autBtn.setAttribute("width", "104.8");
+                        autBtn.setAttribute("x", "5913.53");
+                        ledBtn.setAttribute("width", "104.8");
+                        ledBtn.setAttribute("x", "6038.33");
+                        if(autPoly) autPoly.setAttribute("points", "6018.33,2774.27 5913.53,2774.27 5913.53,2617.24 6018.33,2617.24 6018.33,2774.27");
+                        if(ledPoly) ledPoly.setAttribute("points", "6143.13,2774.27 6038.33,2774.27 6038.33,2617.24 6143.13,2617.24 6143.13,2774.27");
+                    }
                 } else {
                     mainSvg.setAttribute("viewBox", "0 0 6561.51 3109.91");
                     if (panouBgRect) panouBgRect.setAttribute("width", "1033.11");
@@ -508,10 +526,30 @@
                     if (btnSus) btnSus.removeAttribute("transform");
                     if (btnJos) btnJos.removeAttribute("transform");
                     if (hitB1Hold) hitB1Hold.removeAttribute("transform");
+
+                    // Reset desktop
+                    if (infoSwitch) infoSwitch.setAttribute("transform", "translate(180, 150)");
+                    if (autBtn && ledBtn) {
+                        autBtn.setAttribute("width", "74.44");
+                        autBtn.setAttribute("x", "5933.93");
+                        ledBtn.setAttribute("width", "74.44");
+                        ledBtn.setAttribute("x", "6022.91");
+                        if(autPoly) autPoly.setAttribute("points", "6008.37,2774.27 5933.93,2774.27 5933.93,2617.24 6008.37,2617.24 6008.37,2774.27");
+                        if(ledPoly) ledPoly.setAttribute("points", "6097.34,2774.27 6022.9,2774.27 6022.9,2617.24 6097.34,2617.24 6097.34,2774.27");
+                    }
                 }
             }
             mediaQuery.addEventListener("change", handleOrientationChange);
             handleOrientationChange(mediaQuery);
+
+            // Modificarea 3: Ascunderea automată a barei de adrese la primul tap pe ecran (mobil)
+            document.addEventListener('touchstart', () => {
+                if (window.innerWidth <= 1000 && !document.fullscreenElement) {
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen().catch(() => {});
+                    }
+                }
+            }, { once: true, passive: true });
 
             const triggers = document.querySelectorAll('.t-trigger');
             const infoCard = document.getElementById('info-card');
