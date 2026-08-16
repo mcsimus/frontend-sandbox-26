@@ -35,17 +35,16 @@
             justify-content: center; align-items: center;
         }
 
+        /* Containerul pozei curățat de chenare și fundaluri negre forțate */
         .aspect-wrapper {
             position: relative; 
-            width: 100%; height: 100%; /* Forțăm cutia să se deschidă la maximum permis */
+            width: 100%; height: 100%; 
             max-width: 100%; max-height: 100%;
             aspect-ratio: 6561.51 / 3109.91; 
-            border: 3px solid #1e293b; border-radius: 12px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.8); background: #000;
+            border: none; border-radius: 0;
+            box-shadow: none; background: transparent;
         }
 
-        /* Am șters "position: absolute", astfel încât SVG-ul devine baza cutiei */
-        .overlay-svg { display: block; width: 100%; height: 100%; z-index: 2; overflow: visible; }
         .overlay-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; overflow: visible; }
 
         /* ================= ANIMAȚII & FSM ================= */
@@ -103,7 +102,6 @@
         @keyframes p-fly7 { 0% { transform: translate(0,0) scale(0); opacity: 1; } 100% { transform: translate(-350px, -1200px) scale(1.6); opacity: 0; } }
         @keyframes p-fly8 { 0% { transform: translate(0,0) scale(0); opacity: 1; } 100% { transform: translate(400px, -1800px) scale(2.8); opacity: 0; } }
 
-        /* Ascunde ceața și particulele când suntem în Demo Mode (doar joc de lumini) */
         body.demo-puff-active .mist-cone, body.demo-puff-active .particle { display: none !important; }
 
         /* ================= ETICHETE & PANOU ================= */
@@ -147,15 +145,15 @@
         .tooltip-desc { color: #cbd5e1; font-size: 14px; line-height: 1.4; margin: 0; }
         .tooltip-desc strong { color: #facc15; }
 
-        /* ================= COMUTATOR INFO FIXAT STÂNGA SUS ================= */
+        /* ================= COMUTATOR INFO (COLȚUL STÂNGA-SUS AL IMAGINII) ================= */
         .info-toggle-container {
             position: absolute; 
-            top: 3vh; 
-            left: 2vw;
+            top: 25px; 
+            left: 25px;
             display: flex; 
             align-items: center; 
             gap: 8px;
-            background: rgba(15, 23, 42, 0.75); 
+            background: rgba(15, 23, 42, 0.85); 
             padding: 6px 14px;
             border-radius: 20px; 
             border: 1px solid #334155;
@@ -205,31 +203,16 @@
             80%, 100% { transform: rotate(-90deg); } 
         }
 
-        /* Ascundere aplicație dacă e pe verticală (inclusiv Butonul INFO) */
+        /* Ascundere completă pe verticală (Portrait) */
         @media screen and (max-width: 1000px) and (orientation: portrait) {
             .rotate-message { display: flex; }
-            .header, .interactive-container, .info-toggle-container { display: none !important; }
+            .header, .interactive-container { display: none !important; }
         }
 
-        /* Maximzare spațiu + Modificare Aspect Ratio pe Mobil Landscape */
+        /* Optimizare Mobil pe Orizontală (Landscape) */
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
-            body { padding: 3vh 2vw !important; }
-            .aspect-wrapper {
-            position: relative; 
-            width: 100%; 
-            height: auto; 
-            max-width: 100%; 
-            max-height: 100%;
-            aspect-ratio: 6561.51 / 3109.91; 
-            border: none; /* Am scos chenarul ca să nu mai creeze un cadru dublu artificial */
-            border-radius: 0; 
-            box-shadow: none; 
-            background: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+            body { padding: 2vh 1vw !important; }
             
             .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 5vh; gap: 10px; }
             .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
@@ -237,10 +220,9 @@
             .tooltip-title { font-size: 13px; margin-bottom: 4px; }
             .tooltip-desc { font-size: 11px; line-height: 1.2; }
             
-            /* Ajustare buton info pentru telefon: deasupra LCD-ului, centrat pe panoul drept */
+            /* Butonul INFO pe telefon: deasupra LCD-ului și centrat pe panoul drept */
             .info-toggle-container { 
-                top: 1vh; 
-                bottom: auto; 
+                top: 2vh; 
                 left: auto; 
                 right: 13.5%; 
                 transform: translateX(50%);
@@ -271,16 +253,16 @@
     </header>
 
     <main class="interactive-container">
-        <!-- COMUTATOR INFO FIXAT -->
-        <div class="info-toggle-container">
-            <span class="info-toggle-label">INFO</span>
-            <label class="info-switch">
-                <input type="checkbox" id="toggle-info-btn" checked>
-                <span class="info-slider"></span>
-            </label>
-        </div>
-
         <div class="aspect-wrapper">
+            <!-- COMUTATOR INFO PLASAT ÎN INTERIORUL CONTAINERULUI (COLȚUL STÂNGA-SUS) -->
+            <div class="info-toggle-container">
+                <span class="info-toggle-label">INFO</span>
+                <label class="info-switch">
+                    <input type="checkbox" id="toggle-info-btn" checked>
+                    <span class="info-slider"></span>
+                </label>
+            </div>
+
             <!-- GRID SVG VECTORIAL -->
             <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="none">
                 <defs>
@@ -310,7 +292,7 @@
                 </defs>
 
                 <!-- IMAGINEA DE FUNDAL INTEGRATĂ NATIV ÎN SVG PENTRU ALINIERE PERFECTĂ -->
-                <image href="https://atb.mcsimus.ro/assets/11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="xMinYMid meet" pointer-events="none" />
+                <image href="https://atb.mcsimus.ro/assets/11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="none" />
 
                 <!-- Întunecare generală -->
                 <rect width="100%" height="100%" fill="rgba(15, 23, 42, 0.65)" mask="url(#darkness-mask)" pointer-events="none" />
@@ -525,14 +507,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Stare globală pentru legende
             window.isInfoEnabled = true;
             
             const toggleInfoBtn = document.getElementById('toggle-info-btn');
             if (toggleInfoBtn) {
                 toggleInfoBtn.addEventListener('change', (e) => {
                     window.isInfoEnabled = e.target.checked;
-                    // Dacă s-a debifat, ascundem legenda instant
                     if (!window.isInfoEnabled) {
                         document.getElementById('info-card').classList.remove('active');
                         clearAllHighlights(); 
@@ -540,7 +520,6 @@
                 });
             }
             
-            // ================= REGLARE DINAMICĂ PENTRU TELEFON (LANDSCAPE) =================
             const mediaQuery = window.matchMedia("(max-width: 1000px) and (orientation: landscape)");
             
             function handleOrientationChange(e) {
@@ -556,14 +535,9 @@
                     mainSvg.setAttribute("viewBox", "0 0 7561.51 3109.91"); 
                     if (panouBgRect) panouBgRect.setAttribute("width", "2034.7"); 
                     
-                    // 1. Ecran LCD +25% față de anterior (scale 2.1) și centrat forțat pe X
                     if (lcdGrup) lcdGrup.setAttribute("transform", "translate(-6140, -380) scale(2.1)");
-                    
-                    // 2. Butoane sus + Hitbox B1'' (sincronizat), centrate pe X, așezate ordonat sub ecran
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (hitB1Hold) hitB1Hold.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
-                    
-                    // 3. Butoane Master (Jos) TRASE puternic în sus (pe Y: -1800) ca să nu mai taie textul "Off"
                     if (btnJos) btnJos.setAttribute("transform", "translate(-2900, -1800) scale(1.6)");
                 } else {
                     mainSvg.setAttribute("viewBox", "0 0 6561.51 3109.91");
@@ -578,7 +552,6 @@
             mediaQuery.addEventListener("change", handleOrientationChange);
             handleOrientationChange(mediaQuery);
 
-
             const triggers = document.querySelectorAll('.t-trigger');
             const infoCard = document.getElementById('info-card');
             const tTag = document.getElementById('t-tag');
@@ -589,7 +562,6 @@
                 document.getElementById("lcd-r2"), document.getElementById("lcd-r3")
             ];
 
-            // === DETECȚIE TOUCH & TIMER ECRAN MOBIL ===
             window.isTouchDevice = false;
             window.tooltipTimeout = null;
             document.addEventListener('touchstart', () => { window.isTouchDevice = true; }, {passive: true});
@@ -610,7 +582,7 @@
             }
 
             function showTooltip(type, channelNum) {
-                if (!window.isInfoEnabled) return; // Oprește legenda dacă butonul e pe OFF
+                if (!window.isInfoEnabled) return;
 
                 let tagStr = "", colorHex = "#f8fafc", title = "", desc = "";
                 tTag.classList.remove('usb-shape');
@@ -640,7 +612,6 @@
                         tagStr = "B1''"; colorHex = "#FA0A0A"; title = "Buton B1 (HOLD)";
                         desc = "Apăsați pentru simulare buton ținut apăsat - valabil pentru scenariul party.";
                         break;
-                    // === NOILE LEGENDE ADAUGATE ===
                     case "lcd":
                         tagStr = "LCD"; colorHex = "#38bdf8"; title = "AFIȘAJ STATUS SISTEM";
                         tTag.classList.add('usb-shape');
@@ -672,7 +643,6 @@
 
                 if(type !== "b1_hold") toggleTextHighlight(tagStr, true);
 
-                // === LOGICĂ NOUĂ PENTRU MOBIL (3 secunde auto-hide) ===
                 if (window.isTouchDevice) {
                     if (window.tooltipTimeout) clearTimeout(window.tooltipTimeout);
                     window.tooltipTimeout = setTimeout(() => {
@@ -708,8 +678,6 @@
                     
                     const allowedTypes = ["hitbox", "usb", "ring", "lcd", "b1", "b2", "master_aut", "master_led"];
                     if (trigger.classList.contains('hitbox') || allowedTypes.includes(type)) {
-                        
-                        // Lista elementelor cărora NU le blocăm click-ul nativ (pentru a putea fi apăsate normal)
                         const noPreventDefault = ["button", "atomizer", "b1_hold", "b1", "b2", "master_aut", "master_led"];
                         if (!noPreventDefault.includes(type)) {
                             e.preventDefault(); 
@@ -751,7 +719,6 @@
                             }
                         } else if (window.fsmState === "SN" || window.fsmState === "SOFF") {
                             if (window.demoModeActive) {
-                                // În Demo Mode permitem spectacolul de lumini, dar transmitem parametrul "true" pentru a opri ceața
                                 doPuffAnimation(channelGroup, maskHole, channelNum, true);
                             } else {
                                 if (!window.isB2On) {
@@ -780,7 +747,6 @@
             function doPuffAnimation(channelGroup, maskHole, chNum, isDemoMode = false) {
                 window.puffingChannel = chNum;
                 
-                // Am șters "infoCard.classList.remove('active');" pentru a lăsa legenda vizibilă asincron 3 secunde!
                 clearHoverEffects(); clearAllHighlights();
                 
                 document.body.classList.add('puffing'); 
@@ -789,7 +755,6 @@
                 channelGroup.classList.add('active');
                 if (maskHole) maskHole.classList.add('active');
                 
-                // INTRERUPEM SHOW-URILE IMEDIAT (Party și Demo)
                 if (window.partyModeActive) { window.partyShowRunning = false; window.partyPauseStart = Date.now(); }
                 if (window.demoModeActive && window.showModeActive) { window.demoShowRunning = false; window.demoPauseStart = Date.now(); }
                 
@@ -800,13 +765,11 @@
                     document.body.classList.remove('demo-puff-active'); 
                     window.puffingChannel = -1;
                     
-                    // Resetăm timer-ul din nou, astfel încât cele 15s de pauză să curgă DUPĂ ce s-a terminat puf-ul
                     if (window.partyModeActive) window.partyPauseStart = Date.now();
                     if (window.demoModeActive && window.showModeActive) window.demoPauseStart = Date.now();
                 }, 2000);
             }
 
-            // ================= SETUP VARIABILE & FSM =================
             const btnB1 = document.getElementById("b1"), btnB1Hold = document.getElementById("b1_hold"), btnB1HoldGroup = document.getElementById("b1_hold_group");
             const eticB1 = document.getElementById("eticheta_b1"), eticB1Hold = document.getElementById("eticheta_b1_hold"), eticB2 = document.getElementById("eticheta_b2");
             const eticMasterOn = document.getElementById("eticheta_on_butoane_master"), eticMasterOff = document.getElementById("eticheta_off_butoane_master");
@@ -841,7 +804,6 @@
             };
 
             if(btnB1) {
-                // Sincronizare la apăsarea simplă
                 const pressB1 = (e) => { 
                     e.preventDefault(); 
                     if (!window.isB1Held) { 
@@ -874,7 +836,6 @@
                     e.preventDefault();
                     if (!window.isB1Held) {
                         window.isB1Held = true;
-                        // Aprindere combinată
                         if(btnB1Hold) btnB1Hold.classList.add("pressed"); if(eticB1Hold) eticB1Hold.style.opacity = "1";
                         if(btnB1) btnB1.classList.add("pressed"); if(eticB1) eticB1.style.opacity = "1";
                         
@@ -894,7 +855,6 @@
                         if(btnB1) btnB1.classList.remove("pressed"); if(eticB1) eticB1.style.opacity = "0.3";
                     }
                 };
-                // Preia comanda direct pe butonul clonat de hold
                 hitB1HoldElement.addEventListener("pointerdown", toggleHoldB1);
             }
 
@@ -971,7 +931,6 @@
             updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn);
             syncPanelVisuals();
 
-            // ================= UPDATE HARDWARE VISUALS =================
             function updateHardwareVisuals(now, elapsed) {
                 if (!window.isMasterAutOn || window.puffingChannel !== -1) return; 
                 let timeFrame = now % 10000;
@@ -987,7 +946,6 @@
                     }
                 }
 
-                // USB Update
                 let usbDomes = document.querySelectorAll('.usb-dome'), usbOpacity = 0, usbColor = "#07FCFD";
                 if (window.fsmState === "SI") {
                     if (elapsed < 3000) usbOpacity = 0;
@@ -1008,7 +966,6 @@
 
                 usbDomes.forEach(u => { u.style.fill = usbColor; u.style.opacity = usbOpacity; u.style.filter = `drop-shadow(0 0 ${usbOpacity * 20}px ${usbColor})`; });
 
-                // CHANNELS Update
                 for (let i = 0; i < 4; i++) {
                     let chGroup = document.getElementById('ch' + (i + 1));
                     if (!chGroup) continue;
@@ -1086,7 +1043,6 @@
                 }
             }
 
-            // ================= FSM LOOP =================
             setInterval(() => {
                 if (!window.isMasterAutOn) return; 
                 let now = Date.now(), elapsed = window.fsmState === "SI" ? (now - window.fsmStart) : 0;
@@ -1157,7 +1113,6 @@
                     updateLCD("Sistem Spray INACTIV", `A1:   ${window.puffs[0]}p  A3:   ${window.puffs[2]}p`, `A2:   ${window.puffs[1]}p  A4:   ${window.puffs[3]}p`, window.fsmState === "SBOFF" ? "ACCES BLOCAT!       " : "deblocati B2        ");
                 }
                 else if (window.fsmState === "SN") {
-                    // 1. PRIORITATE MAXIMĂ: Când se dă puf, suprascriem complet LCD-ul (inclusiv peste Demo/Party)
                     if (window.puffingChannel !== -1) {
                         let r0 = window.demoModeActive ? "     DEMO MODE      " : (window.partyModeActive ? "Sistem Spray [PARTY]" : "Sistem Spray ACTIV  ");
                         if (window.showModeActive && window.demoModeActive) r0 = "*****DEMO MODE******";
@@ -1168,7 +1123,6 @@
                         let r3 = "Faza: Atomizor ACTIV";
                         updateLCD(r0, r1, r2, r3);
                     }
-                    // 2. Regim Demo Mode (când stă în repaus)
                     else if (window.demoModeActive) {
                         if (window.b1Presses >= 3) {
                             window.b1Presses = 0; window.showModeActive = !window.showModeActive; window.demoShowRunning = window.showModeActive;
@@ -1186,7 +1140,6 @@
                         }
                         updateLCD(r0, r1, r2, r3);
                     } 
-                    // 3. Regim Normal (sau Party Mode - când stă în repaus)
                     else {
                         if (window.b1Presses >= 3 && window.isB2On && !window.purjarePending) {
                             window.b1Presses = 0; window.purjarePending = true; window.purjarePendingStart = now; return;
