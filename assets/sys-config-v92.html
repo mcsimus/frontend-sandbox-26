@@ -215,7 +215,21 @@
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
             body { padding: 3vh 2vw !important; }
-            .aspect-wrapper { aspect-ratio: 7561.51 / 3109.91 !important; }
+            .aspect-wrapper {
+            position: relative; 
+            width: 100%; 
+            height: auto; 
+            max-width: 100%; 
+            max-height: 100%;
+            aspect-ratio: 6561.51 / 3109.91; 
+            border: none; /* Am scos chenarul ca să nu mai creeze un cadru dublu artificial */
+            border-radius: 0; 
+            box-shadow: none; 
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
             
             .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 5vh; gap: 10px; }
             .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
@@ -225,13 +239,17 @@
             
             /* Ajustare buton info pentru telefon: deasupra LCD-ului, centrat pe panoul drept */
             .info-toggle-container { 
-                top: 2vh; 
+                top: 1vh; 
                 bottom: auto; 
                 left: auto; 
                 right: 13.5%; 
                 transform: translateX(50%);
+                padding: 4px 10px;
             }
-            .info-toggle-label { font-size: 11px; }
+            .info-toggle-label { font-size: 10px; }
+            .info-switch { width: 30px; height: 16px; }
+            .info-slider:before { height: 12px; width: 12px; }
+            .info-switch input:checked + .info-slider:before { transform: translateX(14px); }
         }
     </style>
 </head>
@@ -264,7 +282,7 @@
 
         <div class="aspect-wrapper">
             <!-- GRID SVG VECTORIAL -->
-            <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="xMidYMid meet">
+            <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="none">
                 <defs>
                     <filter id="mist-blur" x="-100%" y="-100%" width="300%" height="300%">
                         <feGaussianBlur stdDeviation="50" />
