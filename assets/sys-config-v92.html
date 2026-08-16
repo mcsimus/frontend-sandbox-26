@@ -147,31 +147,10 @@
         .tooltip-desc { color: #cbd5e1; font-size: 14px; line-height: 1.4; margin: 0; }
         .tooltip-desc strong { color: #facc15; }
 
-        /* ================= ECRAN AVERTIZARE (PORTRAIT) ================= */
-        .rotate-message {
-            display: none; flex-direction: column; justify-content: center; align-items: center;
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
-            background-color: #0f172a; color: #38bdf8; z-index: 9999; text-align: center; padding: 20px;
-        }
-        .rotate-icon { margin-bottom: 30px; animation: tilt-phone 2.5s infinite ease-in-out; color: #f8fafc; }
-        .rotate-message h2 { margin: 0 0 15px 0; font-size: 1.8rem; letter-spacing: 1px; }
-        .rotate-message p { color: #94a3b8; font-size: 1.1rem; max-width: 320px; line-height: 1.5; margin: 0; }
-
-        @keyframes tilt-phone { 
-            0%, 20% { transform: rotate(0deg); } 
-            80%, 100% { transform: rotate(-90deg); } 
-        }
-
-        /* Ascundere aplicație dacă e pe verticală */
-        @media screen and (max-width: 1000px) and (orientation: portrait) {
-            .rotate-message { display: flex; }
-            .header, .interactive-container { display: none !important; }
-        }
-
-        /* ================= COMUTATOR INFO FIXAT STÂNGA JOS ================= */
+        /* ================= COMUTATOR INFO FIXAT STÂNGA SUS ================= */
         .info-toggle-container {
-            position: fixed; 
-            bottom: 3vh; 
+            position: absolute; 
+            top: 3vh; 
             left: 2vw;
             display: flex; 
             align-items: center; 
@@ -180,7 +159,7 @@
             padding: 6px 14px;
             border-radius: 20px; 
             border: 1px solid #334155;
-            z-index: 9999; /* Să fie mereu deasupra oricărui element */
+            z-index: 9999;
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
@@ -211,6 +190,27 @@
         .info-switch input:checked + .info-slider { background-color: #38bdf8; }
         .info-switch input:checked + .info-slider:before { transform: translateX(16px); }
 
+        /* ================= ECRAN AVERTIZARE (PORTRAIT) ================= */
+        .rotate-message {
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
+            background-color: #0f172a; color: #38bdf8; z-index: 9999; text-align: center; padding: 20px;
+        }
+        .rotate-icon { margin-bottom: 30px; animation: tilt-phone 2.5s infinite ease-in-out; color: #f8fafc; }
+        .rotate-message h2 { margin: 0 0 15px 0; font-size: 1.8rem; letter-spacing: 1px; }
+        .rotate-message p { color: #94a3b8; font-size: 1.1rem; max-width: 320px; line-height: 1.5; margin: 0; }
+
+        @keyframes tilt-phone { 
+            0%, 20% { transform: rotate(0deg); } 
+            80%, 100% { transform: rotate(-90deg); } 
+        }
+
+        /* Ascundere aplicație dacă e pe verticală (inclusiv Butonul INFO) */
+        @media screen and (max-width: 1000px) and (orientation: portrait) {
+            .rotate-message { display: flex; }
+            .header, .interactive-container, .info-toggle-container { display: none !important; }
+        }
+
         /* Maximzare spațiu + Modificare Aspect Ratio pe Mobil Landscape */
         @media screen and (max-width: 1000px) and (orientation: landscape) {
             .header { display: none !important; }
@@ -223,8 +223,14 @@
             .tooltip-title { font-size: 13px; margin-bottom: 4px; }
             .tooltip-desc { font-size: 11px; line-height: 1.2; }
             
-            /* Ajustare buton info pentru telefon */
-            .info-toggle-container { bottom: 5vh; left: 2vw; }
+            /* Ajustare buton info pentru telefon: deasupra LCD-ului, centrat pe panoul drept */
+            .info-toggle-container { 
+                top: 2vh; 
+                bottom: auto; 
+                left: auto; 
+                right: 13.5%; 
+                transform: translateX(50%);
+            }
             .info-toggle-label { font-size: 11px; }
         }
     </style>
@@ -246,16 +252,16 @@
         <p>Treceți cu mouse-ul peste etichete. <strong>Panoul din dreapta și elementele hardware reacționează la click.</strong></p>
     </header>
 
-    <!-- COMUTATOR INFO FIXAT STÂNGA JOS -->
-    <div class="info-toggle-container">
-        <span class="info-toggle-label">INFO</span>
-        <label class="info-switch">
-            <input type="checkbox" id="toggle-info-btn" checked>
-            <span class="info-slider"></span>
-        </label>
-    </div>
-
     <main class="interactive-container">
+        <!-- COMUTATOR INFO FIXAT -->
+        <div class="info-toggle-container">
+            <span class="info-toggle-label">INFO</span>
+            <label class="info-switch">
+                <input type="checkbox" id="toggle-info-btn" checked>
+                <span class="info-slider"></span>
+            </label>
+        </div>
+
         <div class="aspect-wrapper">
             <!-- GRID SVG VECTORIAL -->
             <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="xMidYMid meet">
@@ -501,13 +507,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Logica buton ascundere
+            // Stare globală pentru legende
+            window.isInfoEnabled = true;
+            
             const toggleInfoBtn = document.getElementById('toggle-info-btn');
             if (toggleInfoBtn) {
                 toggleInfoBtn.addEventListener('change', (e) => {
-                    if (!e.target.checked) {
-                        const infoCard = document.getElementById('info-card');
-                        if (infoCard) infoCard.classList.remove('active');
+                    window.isInfoEnabled = e.target.checked;
+                    // Dacă s-a debifat, ascundem legenda instant
+                    if (!window.isInfoEnabled) {
+                        document.getElementById('info-card').classList.remove('active');
                         clearAllHighlights(); 
                     }
                 });
@@ -583,9 +592,7 @@
             }
 
             function showTooltip(type, channelNum) {
-                // Oprește legenda instant dacă butonul INFO nu este bifat
-                const infoToggle = document.getElementById('toggle-info-btn');
-                if (infoToggle && !infoToggle.checked) return;
+                if (!window.isInfoEnabled) return; // Oprește legenda dacă butonul e pe OFF
 
                 let tagStr = "", colorHex = "#f8fafc", title = "", desc = "";
                 tTag.classList.remove('usb-shape');
@@ -747,7 +754,7 @@
             });
 
             document.addEventListener('click', (e) => {
-                if(!e.target.closest('.t-trigger') && !e.target.closest('.toggle-btn') && !e.target.closest('#b1') && !e.target.closest('#b1_hold_group')) {
+                if(!e.target.closest('.t-trigger') && !e.target.closest('.toggle-btn') && !e.target.closest('#b1') && !e.target.closest('#b1_hold_group') && !e.target.closest('.info-toggle-container')) {
                     infoCard.classList.remove('active'); clearHoverEffects(); clearAllHighlights();
                 }
             });
