@@ -301,11 +301,18 @@
         .img-container img { width: 100%; height: 125mm; object-fit: contain; mix-blend-mode: multiply; }
 
         .img-container.zoomed-mode {
-            transform: scale(1.75);
-            z-index: 100;
+            position: fixed;       /* O fixează pe ecran */
+            top: 50%;              /* O pune la jumătatea înălțimii ecranului */
+            left: 50%;             /* O pune la jumătatea lățimii ecranului */
+            transform: translate(-50%, -50%) scale(1.75); /* O centrează și aplică scalarea */
+            z-index: 1000;
             background: #ffffff;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
             border: 2px solid var(--accent-color);
+            margin: 0;             /* Elimină marginile pentru a nu interfera cu centrarea */
+            width: auto;           /* Ajustează lățimea automat */
+            max-width: 90vw;       /* Nu depășește 90% din lățimea ecranului */
+            max-height: 90vh;      /* Nu depășește 90% din înălțimea ecranului */
         }
         .img-container.zoomed-mode img { mix-blend-mode: normal; }
 
