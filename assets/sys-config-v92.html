@@ -23,6 +23,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
+        .ppd-click-area {
+                position: absolute;
+                bottom: 2vh;
+                left: 2vw;
+                width: 15vw;
+                height: 10vh;
+                z-index: 50;
+                cursor: pointer;
+                background: transparent;
+            }
+
+        
         * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -464,11 +476,7 @@
     </g>
 
     <!-- HITBOX INTERACTIV PENTRU LOGO (Așezat deasupra întunericului pentru a prelua mouse-ul) -->
-    <a href="https://www.plastyprod.ro" target="_blank" title="Vizitati www.plastyprod.ro">
-        <rect class="t-trigger" data-type="logo" x="1800" y="2700" width="800" height="250" fill="transparent" pointer-events="all" style="cursor: pointer;" />
-    </a>
-            </svg>
-        </div>
+    <a href="https://www.plastyprod.ro" target="_blank" title="Vizitati www.plastyprod.ro" class="ppd-click-area t-trigger" data-type="logo"></a>
 
         <div class="tooltip-card" id="info-card">
             <div class="tooltip-tag" id="t-tag">TAG</div>
