@@ -269,11 +269,11 @@
                 align-items: center;
             }
 
-            /* Suprascriere poziție banner pe mobil landscape astfel încât să acopere exact LCD-ul */
+            /* Poziționare banner pe mobil landscape exact peste LCD */
             #tour-banner {
-                top: 18% !important;
-                left: 80% !important;
-                width: 21% !important;
+                top: 15% !important;
+                left: 91.5% !important;
+                width: 17.5% !important;
                 transform: translate(-50%, -50%) !important;
                 padding: 0.8% 0.6% !important;
             }
@@ -748,7 +748,7 @@
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.left = '90%'; mouse.style.top = '86%'; // Poziție pe butonul Aut.
+                            mouse.style.left = '84.5%'; mouse.style.top = '92%'; // Poziție pe butonul Aut.
                             setTimeout(() => {
                                 document.body.classList.remove('hide-cursor');
                                 resolve();
@@ -1328,6 +1328,13 @@
                         if(mouse) mouse.style.opacity = '0';
                         document.body.classList.remove('hide-cursor');
 
+                        // Activează starea ON a butoanelor și pornește automatizarea instantaneu
+                        window.isMasterAutOn = true;
+                        if(window.isMasterAutOn) document.body.classList.remove("master-off");
+                        else document.body.classList.add("master-off");
+                        updateToggleVisuals("buton_master_automatizare", "aut_on_icon", "aut_off_icon", window.isMasterAutOn); 
+                        syncPanelVisuals(); 
+
                         setTourText(" Tur realizat cu succes!");
 
                         setTimeout(() => {
@@ -1336,12 +1343,6 @@
                                 if(banner) banner.style.display = 'none';
                                 currentTourStep = 99;
 
-                                window.isMasterAutOn = true;
-                                if(window.isMasterAutOn) document.body.classList.remove("master-off");
-                                else document.body.classList.add("master-off");
-                                updateToggleVisuals("buton_master_automatizare", "aut_on_icon", "aut_off_icon", window.isMasterAutOn); 
-                                syncPanelVisuals(); 
-
                                 window.fsmState = "SI"; 
                                 window.fsmStart = Date.now(); 
                                 window.demoModeActive = !window.isB2On;
@@ -1349,8 +1350,8 @@
                                 window.partyModeActive = false; 
                                 window.pumpPurged = [false, false, false, false]; 
                                 window.purjareIntrerupta = false;
-                            }, 1000); 
-                        }, 3000); 
+                            }, 1000); // 1 secundă pauză după cele 3 secunde de mesaj
+                        }, 3000); // 3 secunde afișare mesaj "Tur realizat cu succes!"
 
                         return;
                     }
