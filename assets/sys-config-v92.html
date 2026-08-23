@@ -268,6 +268,18 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            /* Suprascriere poziție banner pe mobil landscape astfel încât să acopere exact LCD-ul */
+            #tour-banner {
+                top: 15% !important;
+                left: 91.5% !important;
+                width: 17.5% !important;
+                transform: translate(-50%, -50%) !important;
+                padding: 0.8% 0.6% !important;
+            }
+            #tour-text {
+                font-size: clamp(0.45rem, 0.65vw, 0.65rem) !important;
+            }
             
             .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
             .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
@@ -736,9 +748,8 @@
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.left = '84.5%'; mouse.style.top = '92%'; // Poziție pe butonul Aut.
+                            mouse.style.left = '90%'; mouse.style.top = '86%'; // Poziție pe butonul Aut.
                             setTimeout(() => {
-                                // Mouse-ul virtual rămâne vizibil, reactivăm cursorul fizic
                                 document.body.classList.remove('hide-cursor');
                                 resolve();
                             }, 1200);
@@ -1306,19 +1317,12 @@
 
             const btnAut = document.getElementById("buton_master_automatizare");
             if(btnAut) {
-                btnAut.addEventListener('mouseenter', () => {
-                    if (currentTourStep === 5) {
-                        const mouse = document.getElementById('simulated-mouse');
-                        if(mouse) mouse.style.opacity = '0';
-                    }
-                });
-
                 const toggleAut = (e) => {
                     e.preventDefault(); 
 
                     if (currentTourStep === 5) {
                         const autBtn = document.getElementById('buton_master_automatizare');
-                        if(autBtn) autBtn.classList.remove('flash-intense'); // Oprește pulsarea la apăsare
+                        if(autBtn) autBtn.classList.remove('flash-intense'); 
 
                         const mouse = document.getElementById('simulated-mouse');
                         if(mouse) mouse.style.opacity = '0';
@@ -1345,8 +1349,8 @@
                                 window.partyModeActive = false; 
                                 window.pumpPurged = [false, false, false, false]; 
                                 window.purjareIntrerupta = false;
-                            }, 1000); // 1 secundă pauză suplimentară după cele 3 secunde
-                        }, 3000); // 3 secunde afișare mesaj "Tur realizat cu succes!"
+                            }, 1000); 
+                        }, 3000); 
 
                         return;
                     }
