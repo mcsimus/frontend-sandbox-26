@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
-            .ppd-click-area {
+        .ppd-click-area {
             position: absolute;
             bottom: 2vh;
             left: 2vw;
@@ -34,7 +34,11 @@
             background: transparent;
         }
 
-        
+        /* Clasă pentru ascunderea completă a cursorului fizic */
+        body.hide-cursor, body.hide-cursor * {
+            cursor: none !important;
+        }
+
         * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -140,6 +144,71 @@
         .icon-on, .icon-off { pointer-events: none; }
         #lcd_text_group { font-family: 'Share Tech Mono', monospace; font-size: 50px; }
 
+        /* ================= BANNER AURIU & TUR GHIDAT ================= */
+        #tour-banner {
+            position: absolute;
+            top: 62%;
+            left: 85.8%;
+            transform: translate(-50%, -50%);
+            width: 12.7%;
+            height: auto;
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 10px;
+            padding: 1.2% 1%;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 3px solid transparent;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96)), 
+                              linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        #tour-text {
+            font-size: clamp(0.55rem, 0.85vw, 0.8rem);
+            line-height: 1.3;
+            color: #d4af37;
+        }
+
+        #tour-skip-btn {
+            background: linear-gradient(135deg, #bf953f, #aa771c);
+            color: #ffffff;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: clamp(0.45rem, 0.65vw, 0.65rem);
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+        #tour-skip-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+        .flash-intense {
+            animation: super-flash 0.5s infinite alternate !important;
+        }
+        @keyframes super-flash {
+            0% { filter: drop-shadow(0 0 5px #ffd700) brightness(1); }
+            100% { filter: drop-shadow(0 0 30px #ffd700) brightness(1.7); }
+        }
+
+        #simulated-mouse {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2338bdf8" stroke="%23ffffff" stroke-width="2"><polygon points="5 3 19 12 12 13 9 21 5 3"></polygon></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 99999;
+            pointer-events: none;
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0;
+        }
+
         /* ================= TOOLTIP ================= */
         .tooltip-card {
             position: absolute; bottom: 2vh; left: 50%;
@@ -226,6 +295,9 @@
 
     <main class="interactive-container">
         <div class="aspect-wrapper">
+            <!-- Cursor simulat pentru tur -->
+            <div id="simulated-mouse"></div>
+
             <svg viewBox="0 0 6561.51 3109.91" class="overlay-svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                     <filter id="mist-blur" x="-100%" y="-100%" width="300%" height="300%">
@@ -254,7 +326,7 @@
                     </mask>
                 </defs>
 
-                <image href="https://atb.mcsimus.ro/assets/11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="xMidYMid meet" pointer-events="none" />
+                <image href="11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="xMidYMid meet" pointer-events="none" />
 
                 <!-- COMUTATOR INFO ÎN SVG -->
                 <g id="info-switch-svg" cursor="pointer" transform="translate(180, 150)">
@@ -389,7 +461,7 @@
                     <circle class="hitbox t-trigger" data-type="button" data-ch="4" cx="4730.24" cy="1854.32" r="150" />
                 </g>
 
-                <!-- ================= ZONA DREAPTĂ ================= -->
+<!-- ================= ZONA DREAPTĂ ================= -->
                 <g id="panou-dreapta">
                     <rect fill="none" stroke="black" stroke-width="3.18" stroke-miterlimit="22.92" x="1.59" y="1.59" width="5525.21" height="3106.73" pointer-events="none"/>
                     
@@ -398,6 +470,15 @@
                     <g id="panou-content-group">
                         <g id="lcd_grup_sus" class="fade-element" pointer-events="none">
                             <rect class="hitbox t-trigger" data-type="lcd" x="5560.94" y="279.05" width="964.84" height="392.1" fill="transparent" pointer-events="all"/>
+                            
+                            <!-- Buton MANUAL -->
+                            <a href="https://atb.mcsimus.ro/manual" target="_blank" title="pentru documentatia detaliata a utilizarii dati click" pointer-events="all" style="cursor: pointer;">
+                                <g transform="translate(5803, 140)">
+                                    <rect x="0" y="0" width="480" height="110" rx="55" fill="rgba(15, 23, 42, 0.85)" stroke="#38bdf8" stroke-width="4"/>
+                                    <text x="240" y="72" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="900" font-size="56px" text-anchor="middle" letter-spacing="2">MANUAL</text>
+                                </g>
+                            </a>
+
                             <polygon fill="#2B2A29" points="6525.78,279.05 6525.78,671.15 5560.94,671.15 5560.94,279.05 "/>
                             <polygon fill="#0792F4" fill-rule="nonzero" points="6484,320.83 6484,629.37 5602.72,629.37 5602.72,320.83 "/>
                             
@@ -460,29 +541,217 @@
                     </g>
                 </g>
 
-               <!-- LOGO PPD INTERACTIV (Integrat direct pe vectorul SVG) -->
-
-                    <g id="logo-baza" class="fade-element" pointer-events="all">
-                        <path fill="#E6E6E6" d="M1995.3 2773.87c-0.46,21.48 6.54,51.98 9.86,74.92 4.85,33.49 6.95,13.89 14.07,27.66 2.54,4.92 5.01,32.5 4.57,38.39 -32.97,31.49 -98.49,25.08 -136.31,1.55 0.1,-0.54 0.64,-1.86 0.72,-1.5 0,0.02 4.76,-4.44 2.8,-17.7 -1.39,-9.4 -3.81,-17.93 -5.22,-27.83 26.45,4 47.47,7.35 74.28,-0.14 18.63,-5.2 46.74,-22.08 22.51,-44.86 -31.49,-29.59 -92.8,-15.96 -137.87,-12.4 -0.53,10.5 10.35,76.69 14.38,86.11l21.23 28.59c26.12,21.45 89.42,26.14 126.09,14.2 38.66,-12.58 29,-29.39 24.81,-67.48 12.22,-7.17 9.83,-1.9 7.18,-21.29l-8.39 -58.72c-3.51,-17.99 -4.24,-8.87 -11.91,-19.5 20.1,-31.74 100.77,-29.99 133.18,-7.48 15.06,10.46 13.34,24.24 15.73,47.07 -28.64,-6 -47.4,-12.09 -79.77,-5.26 -22.5,4.75 -52.64,22.4 -30.11,46.62 23.43,25.2 121.83,27.46 133.68,-4.38 7.25,-19.5 -5.36,-20.78 -10.19,-30.63 -12.03,-24.55 13.54,-61.94 -52.1,-77.87 -30.99,-7.52 -85.11,-8.26 -110.93,10.69 -10.25,7.52 -2.9,2.85 -9.98,12.73 -8.08,11.28 -1.02,1.69 -12.3,8.5zm364.79 99.23l30.65 1.56 -1.43 -36.81c19.6,-13.36 61.51,-16.16 76.16,1.3 4.22,8.56 3.69,23.1 4.57,34.72l30.32 0.59 -0.68 -36.61c20.41,-11.99 60.93,-16.85 76.14,1.47 10.57,16.31 -8.79,33.23 15.81,35.91 24.29,2.63 18.61,-8.85 18.12,-21.15 -0.89,-22.24 -1.06,-26.29 -18.45,-35.83 -24.37,-13.36 -65.86,-15.22 -94.09,-5.84 -35.46,11.79 -31.44,-13.24 -92.95,-4.35 -47.64,6.88 -46.56,18.04 -44.17,65.04zm-116.23 -64.31c-78.26,15.09 -35.39,82.52 64.07,62.93 49.66,-9.77 43.69,-39.4 24.66,-52.01 -22.17,-14.69 -61.3,-16.21 -88.73,-10.92zm-323.72 14.74c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2zm196.49 0c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2zm155.87 0c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2z"/>
-                    </g>
-
+                <!-- LOGO PPD (Complet stins la pornire) -->
+                <g id="logo-baza" class="fade-element" pointer-events="all" style="opacity: 0;">
+                    <path fill="#E6E6E6" d="M1995.3 2773.87c-0.46,21.48 6.54,51.98 9.86,74.92 4.85,33.49 6.95,13.89 14.07,27.66 2.54,4.92 5.01,32.5 4.57,38.39 -32.97,31.49 -98.49,25.08 -136.31,1.55 0.1,-0.54 0.64,-1.86 0.72,-1.5 0,0.02 4.76,-4.44 2.8,-17.7 -1.39,-9.4 -3.81,-17.93 -5.22,-27.83 26.45,4 47.47,7.35 74.28,-0.14 18.63,-5.2 46.74,-22.08 22.51,-44.86 -31.49,-29.59 -92.8,-15.96 -137.87,-12.4 -0.53,10.5 10.35,76.69 14.38,86.11l21.23 28.59c26.12,21.45 89.42,26.14 126.09,14.2 38.66,-12.58 29,-29.39 24.81,-67.48 12.22,-7.17 9.83,-1.9 7.18,-21.29l-8.39 -58.72c-3.51,-17.99 -4.24,-8.87 -11.91,-19.5 20.1,-31.74 100.77,-29.99 133.18,-7.48 15.06,10.46 13.34,24.24 15.73,47.07 -28.64,-6 -47.4,-12.09 -79.77,-5.26 -22.5,4.75 -52.64,22.4 -30.11,46.62 23.43,25.2 121.83,27.46 133.68,-4.38 7.25,-19.5 -5.36,-20.78 -10.19,-30.63 -12.03,-24.55 13.54,-61.94 -52.1,-77.87 -30.99,-7.52 -85.11,-8.26 -110.93,10.69 -10.25,7.52 -2.9,2.85 -9.98,12.73 -8.08,11.28 -1.02,1.69 -12.3,8.5zm364.79 99.23l30.65 1.56 -1.43 -36.81c19.6,-13.36 61.51,-16.16 76.16,1.3 4.22,8.56 3.69,23.1 4.57,34.72l30.32 0.59 -0.68 -36.61c20.41,-11.99 60.93,-16.85 76.14,1.47 10.57,16.31 -8.79,33.23 15.81,35.91 24.29,2.63 18.61,-8.85 18.12,-21.15 -0.89,-22.24 -1.06,-26.29 -18.45,-35.83 -24.37,-13.36 -65.86,-15.22 -94.09,-5.84 -35.46,11.79 -31.44,-13.24 -92.95,-4.35 -47.64,6.88 -46.56,18.04 -44.17,65.04zm-116.23 -64.31c-78.26,15.09 -35.39,82.52 64.07,62.93 49.66,-9.77 43.69,-39.4 24.66,-52.01 -22.17,-14.69 -61.3,-16.21 -88.73,-10.92zm-323.72 14.74c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2zm196.49 0c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2zm155.87 0c22.44,0 40.62,6.81 40.62,15.2 0,8.39 -18.19,15.2 -40.62,15.2 -22.44,0 -40.62,-6.81 -40.62,-15.2 0,-8.39 18.19,-15.2 40.62,-15.2z"/>
+                </g>
             </svg>
-        </div>
-<!-- HITBOX INTERACTIV PENTRU LOGO PPD -->
-        <a href="https://www.plastyprod.ro" target="_blank" title="Vizitati www.plastyprod.ro" class="ppd-click-area"></a>
-        <div class="tooltip-card" id="info-card">
-            <div class="tooltip-tag" id="t-tag">TAG</div>
-            <div class="tooltip-content">
-                <h3 class="tooltip-title" id="t-title">Titlu</h3>
-                <p class="tooltip-desc" id="t-desc">Descriere detaliată aici.</p>
+
+            <!-- BANNER AURIU PENTRU TUR GHIDAT -->
+            <div id="tour-banner">
+                <div id="tour-text">Bun venit! Să începem turul.</div>
+                <button id="tour-skip-btn" onclick="skipTour()">Săriți</button>
+            </div>
+
+            <a href="https://www.plastyprod.ro" target="_blank" title="Vizitati www.plastyprod.ro" class="ppd-click-area"></a>
+            <div class="tooltip-card" id="info-card">
+                <div class="tooltip-tag" id="t-tag">TAG</div>
+                <div class="tooltip-content">
+                    <h3 class="tooltip-title" id="t-title">Titlu</h3>
+                    <p class="tooltip-desc" id="t-desc">Descriere detaliată aici.</p>
+                </div>
             </div>
         </div>
     </main>
 
     <script>
+        let currentTourStep = 1;
+        window.step1TooltipDone = false; 
+
+        function setTourText(txt) {
+            const el = document.getElementById('tour-text');
+            if(el) el.textContent = txt;
+        }
+
+        function skipTour() {
+            const banner = document.getElementById('tour-banner');
+            if(banner) banner.style.display = 'none';
+            document.querySelectorAll('.flash-intense').forEach(el => el.classList.remove('flash-intense'));
+            currentTourStep = 99;
+            const mouse = document.getElementById('simulated-mouse');
+            if(mouse) mouse.style.opacity = '0';
+            document.body.classList.remove('hide-cursor');
+        }
+
+        function runTourStep1() {
+            setTourText("Apăsați butonul LED, pentru aprindere logo Ploom.");
+            const mouse = document.getElementById('simulated-mouse');
+            const ledBtn = document.getElementById('buton_master_led');
+            
+            if(ledBtn) ledBtn.classList.add('flash-intense');
+            if(mouse) {
+                mouse.style.opacity = '1';
+                mouse.style.left = '82%'; mouse.style.top = '50%';
+                setTimeout(() => {
+                    mouse.style.left = '87%'; mouse.style.top = '88%'; 
+                }, 400);
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             window.isInfoEnabled = true;
             
+            // --- STEP 2 ---
+            async function runTourStep2() {
+                setTourText("Afișare funcțiuni butoane");
+                const mouse = document.getElementById('simulated-mouse');
+                
+                document.body.classList.add('hide-cursor');
+                if(mouse) {
+                    mouse.style.opacity = '1';
+                    mouse.style.left = '85.8%'; mouse.style.top = '62%';
+                }
+                
+                if(mouse) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            mouse.style.left = '10%'; mouse.style.top = '79%'; 
+                            setTimeout(resolve, 1200); 
+                        }, 200);
+                    });
+                }
+
+                if (currentTourStep !== 2) return;
+
+                const lblC1 = document.getElementById('txt-C1');
+                if(lblC1) lblC1.classList.add('hovered');
+                showTooltip('button', '1');
+                
+                await new Promise(r => setTimeout(r, 3000)); 
+                if(lblC1) lblC1.classList.remove('hovered');
+                document.getElementById('info-card').classList.remove('active');
+                clearAllHighlights();
+
+                if (currentTourStep !== 2) return;
+
+                if(mouse) {
+                    mouse.style.left = '20%'; mouse.style.top = '79%'; 
+                }
+
+                await new Promise(r => setTimeout(r, 1200)); 
+
+                if(mouse) mouse.style.opacity = '0';
+                document.body.classList.remove('hide-cursor');
+
+                setTourText("Treceți cu mouse-ul pe C2");
+            }
+
+            // --- STEP 3 ---
+            async function runTourStep3() {
+                setTourText("Pentru ascunderea descrierilor butoane treceti acest switch pe off");
+                const mouse = document.getElementById('simulated-mouse');
+                
+                document.body.classList.add('hide-cursor');
+                if(mouse) {
+                    mouse.style.opacity = '1';
+                    mouse.style.left = '10%'; mouse.style.top = '15%'; 
+                }
+
+                if(mouse) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            mouse.style.left = '11%'; mouse.style.top = '8%'; 
+                            setTimeout(() => {
+                                document.body.classList.remove('hide-cursor');
+                                resolve();
+                            }, 1200);
+                        }, 200);
+                    });
+                }
+            }
+
+            // --- STEP 4 ---
+            async function runTourStep4() {
+                setTourText("Să explorăm acțiunea pe butoane");
+                const mouse = document.getElementById('simulated-mouse');
+                
+                document.body.classList.add('hide-cursor');
+                if(mouse) {
+                    mouse.style.opacity = '1';
+                    mouse.style.left = '20%'; mouse.style.top = '79%';
+                }
+
+                if(mouse) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            mouse.style.left = '10%'; mouse.style.top = '79%';
+                            setTimeout(resolve, 1200);
+                        }, 200);
+                    });
+                }
+
+                if (currentTourStep !== 4) return;
+
+                const lblC1 = document.getElementById('txt-C1');
+                if(lblC1) lblC1.classList.add('hovered');
+                
+                const ch1Group = document.getElementById('ch1');
+                const maskM1 = document.getElementById('mask-m1');
+                if (ch1Group) {
+                    doPuffAnimation(ch1Group, maskM1, '1', false);
+                }
+
+                await new Promise(r => setTimeout(r, 2000));
+                if(lblC1) lblC1.classList.remove('hovered');
+                clearAllHighlights();
+
+                if (currentTourStep !== 4) return;
+
+                if(mouse) {
+                    mouse.style.left = '20%'; mouse.style.top = '79%';
+                }
+
+                await new Promise(r => setTimeout(r, 1200));
+
+                if(mouse) mouse.style.opacity = '0';
+                document.body.classList.remove('hide-cursor');
+
+                setTourText("Apăsați butonul C2");
+            }
+
+            // --- STEP 5 ---
+            async function runTourStep5() {
+                setTourText("Pentru pornire sistem apasati butonul Aut,");
+                const mouse = document.getElementById('simulated-mouse');
+                const autBtn = document.getElementById('buton_master_automatizare');
+                
+                if(autBtn) autBtn.classList.add('flash-intense'); // Pulsare pe butonul Aut.
+
+                document.body.classList.add('hide-cursor');
+                if(mouse) {
+                    mouse.style.opacity = '1';
+                    mouse.style.left = '50%'; mouse.style.top = '70%'; 
+                }
+
+                if(mouse) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            mouse.style.left = '84.5%'; mouse.style.top = '92%'; // Poziție pe butonul Aut.
+                            setTimeout(() => {
+                                // Mouse-ul virtual rămâne vizibil, reactivăm cursorul fizic
+                                document.body.classList.remove('hide-cursor');
+                                resolve();
+                            }, 1200);
+                        }, 200);
+                    });
+                }
+            }
+
+            window.runTourStep2 = runTourStep2;
+            window.runTourStep3 = runTourStep3;
+            window.runTourStep4 = runTourStep4;
+            window.runTourStep5 = runTourStep5;
+
             const infoSwitchSvg = document.getElementById('info-switch-svg');
             const infoSvgTrack = document.getElementById('info-svg-track');
             const infoSvgThumb = document.getElementById('info-svg-thumb');
@@ -498,10 +767,26 @@
             }
 
             if (infoSwitchSvg) {
+                infoSwitchSvg.addEventListener('mouseenter', () => {
+                    if (currentTourStep === 3) {
+                        const mouse = document.getElementById('simulated-mouse');
+                        if(mouse) mouse.style.opacity = '0';
+                    }
+                });
+
                 infoSwitchSvg.addEventListener('click', () => {
                     window.isInfoEnabled = !window.isInfoEnabled;
                     updateInfoSwitchVisuals();
-                    if (!window.isInfoEnabled) {
+
+                    if (currentTourStep === 3 && !window.isInfoEnabled) {
+                        const mouse = document.getElementById('simulated-mouse');
+                        if(mouse) mouse.style.opacity = '0';
+                        document.body.classList.remove('hide-cursor');
+                        currentTourStep = 4;
+                        runTourStep4();
+                    }
+
+                    if (!window.isInfoEnabled && currentTourStep !== 3) {
                         document.getElementById('info-card').classList.remove('active');
                         clearAllHighlights(); 
                     }
@@ -603,6 +888,14 @@
             }
 
             function showTooltip(type, channelNum) {
+                if (currentTourStep === 1) {
+                    if (type !== "master_led" || window.step1TooltipDone) {
+                        return; 
+                    }
+                } else if (currentTourStep < 2) {
+                    return;
+                }
+
                 let tagStr = "", colorHex = "#f8fafc", title = "", desc = "";
                 tTag.classList.remove('usb-shape');
 
@@ -664,6 +957,15 @@
                 tTag.textContent = tagStr; tTag.style.backgroundColor = colorHex;
                 infoCard.classList.add('active');
 
+                if (type === "master_led" && currentTourStep === 1) {
+                    if (window.tooltipTimeout) clearTimeout(window.tooltipTimeout);
+                    window.tooltipTimeout = setTimeout(() => {
+                        infoCard.classList.remove('active');
+                        clearAllHighlights();
+                        window.step1TooltipDone = true; 
+                    }, 2000);
+                }
+
                 if (window.isTouchDevice) {
                     if (window.tooltipTimeout) clearTimeout(window.tooltipTimeout);
                     window.tooltipTimeout = setTimeout(() => {
@@ -671,6 +973,50 @@
                         clearAllHighlights(); 
                     }, 3000);
                 }
+            }
+
+            // Detectare trecere cu mouse-ul fizic pe C2 în Pasul 2
+            const c2Trigger = document.querySelector('[data-type="button"][data-ch="2"]');
+            if (c2Trigger) {
+                c2Trigger.addEventListener('mouseenter', () => {
+                    if (currentTourStep === 2) {
+                        const lblC2 = document.getElementById('txt-C2');
+                        if(lblC2) lblC2.classList.add('hovered');
+                        showTooltip('button', '2');
+
+                        setTimeout(() => {
+                            if(lblC2) lblC2.classList.remove('hovered');
+                            document.getElementById('info-card').classList.remove('active');
+                            clearAllHighlights();
+                            currentTourStep = 3;
+                            window.runTourStep3(); 
+                        }, 2000);
+                    }
+                });
+            }
+
+            // Detectare interacțiune fizică pe C2 în Pasul 4 -> Trecere la Pasul 5
+            if (c2Trigger) {
+                c2Trigger.addEventListener('click', () => {
+                    if (currentTourStep === 4) {
+                        const lblC2 = document.getElementById('txt-C2');
+                        if(lblC2) lblC2.classList.add('hovered');
+                        
+                        const ch2Group = document.getElementById('ch2');
+                        const maskM2 = document.getElementById('mask-m2');
+                        if (ch2Group) {
+                            doPuffAnimation(ch2Group, maskM2, '2', false);
+                        }
+
+                        setTimeout(() => {
+                            if(lblC2) lblC2.classList.remove('hovered');
+                            document.getElementById('info-card').classList.remove('active');
+                            clearAllHighlights();
+                            currentTourStep = 5;
+                            window.runTourStep5(); 
+                        }, 2000);
+                    }
+                });
             }
 
             triggers.forEach(trigger => {
@@ -960,8 +1306,52 @@
 
             const btnAut = document.getElementById("buton_master_automatizare");
             if(btnAut) {
+                btnAut.addEventListener('mouseenter', () => {
+                    if (currentTourStep === 5) {
+                        const mouse = document.getElementById('simulated-mouse');
+                        if(mouse) mouse.style.opacity = '0';
+                    }
+                });
+
                 const toggleAut = (e) => {
-                    e.preventDefault(); window.isMasterAutOn = !window.isMasterAutOn; 
+                    e.preventDefault(); 
+
+                    if (currentTourStep === 5) {
+                        const autBtn = document.getElementById('buton_master_automatizare');
+                        if(autBtn) autBtn.classList.remove('flash-intense'); // Oprește pulsarea la apăsare
+
+                        const mouse = document.getElementById('simulated-mouse');
+                        if(mouse) mouse.style.opacity = '0';
+                        document.body.classList.remove('hide-cursor');
+
+                        setTourText(" Tur realizat cu succes!");
+
+                        setTimeout(() => {
+                            setTimeout(() => {
+                                const banner = document.getElementById('tour-banner');
+                                if(banner) banner.style.display = 'none';
+                                currentTourStep = 99;
+
+                                window.isMasterAutOn = true;
+                                if(window.isMasterAutOn) document.body.classList.remove("master-off");
+                                else document.body.classList.add("master-off");
+                                updateToggleVisuals("buton_master_automatizare", "aut_on_icon", "aut_off_icon", window.isMasterAutOn); 
+                                syncPanelVisuals(); 
+
+                                window.fsmState = "SI"; 
+                                window.fsmStart = Date.now(); 
+                                window.demoModeActive = !window.isB2On;
+                                window.b1Presses = 0; 
+                                window.partyModeActive = false; 
+                                window.pumpPurged = [false, false, false, false]; 
+                                window.purjareIntrerupta = false;
+                            }, 1000); // 1 secundă pauză suplimentară după cele 3 secunde
+                        }, 3000); // 3 secunde afișare mesaj "Tur realizat cu succes!"
+
+                        return;
+                    }
+
+                    window.isMasterAutOn = !window.isMasterAutOn; 
                     if(window.isMasterAutOn) document.body.classList.remove("master-off");
                     else document.body.classList.add("master-off");
                     updateToggleVisuals("buton_master_automatizare", "aut_on_icon", "aut_off_icon", window.isMasterAutOn); syncPanelVisuals(); 
@@ -978,8 +1368,30 @@
             const btnLed = document.getElementById("buton_master_led");
             if(btnLed) {
                 const toggleLed = (e) => {
-                    e.preventDefault(); window.isMasterLedOn = !window.isMasterLedOn; 
-                    updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn); syncPanelVisuals(); 
+                    e.preventDefault(); 
+                    window.isMasterLedOn = !window.isMasterLedOn; 
+                    updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn); 
+                    syncPanelVisuals(); 
+
+                    // Trecere la Pasul 2 după 2 secunde
+                    if (currentTourStep === 1) {
+                        const ledBtn = document.getElementById('buton_master_led');
+                        if(ledBtn) ledBtn.classList.remove('flash-intense');
+                        const mouse = document.getElementById('simulated-mouse');
+                        if(mouse) mouse.style.opacity = '0';
+                        
+                        document.getElementById('info-card').classList.remove('active');
+                        clearAllHighlights();
+                        window.step1TooltipDone = true;
+
+                        setTourText("Logo Ploom aprins.");
+                        currentTourStep = 1.5; 
+
+                        setTimeout(() => {
+                            currentTourStep = 2;
+                            runTourStep2();
+                        }, 2000); 
+                    }
                 };
                 btnLed.addEventListener("pointerdown", toggleLed);
             }
@@ -988,6 +1400,9 @@
             updateToggleVisuals("buton_master_automatizare", "aut_on_icon", "aut_off_icon", window.isMasterAutOn);
             updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn);
             syncPanelVisuals();
+
+            // Pornire tur Pasul 1
+            runTourStep1();
 
             function updateHardwareVisuals(now, elapsed) {
                 if (!window.isMasterAutOn || window.puffingChannel !== -1) return; 
@@ -1131,7 +1546,7 @@
 
                 if (window.fsmState === "SAP") {
                     if (now - window.sapStartTimer > 5000) window.fsmState = window.isB2On ? "SN" : "SOFF";
-                    else updateLCD(window.purjareIntrerupta ? " PURJARE INTRERUPTA " : " PURJARE REUSITA!    ", " Tranzitie sistem   ", " catre regim normal ", " Asteptati...       ");
+                    else updateLCD(window.purjareIntrerupta ? " PURJARE INTRERUPTA " : " PURJARE REUSITA!    ", " Tranzitie sistem    ", " catre regim normal ", " Asteptati...        ");
                     return; 
                 }
 
@@ -1142,7 +1557,7 @@
                         window.pumpPurged = [false, false, false, false]; window.purjareIntrerupta = false; return;
                     }
                     if (elapsed <= 3000) {
-                        updateLCD("Pornire sistem:     ", "Asteptati initializ.", "btn.B2-OFF-DemoMode ", `FB: ${Math.max(1, 3 - Math.floor(elapsed / 1000))}s  Slot:0      `);
+                        updateLCD("Pornire sistem:      ", "Asteptati initializ.", "btn.B2-OFF-DemoMode ", `FB: ${Math.max(1, 3 - Math.floor(elapsed / 1000))}s Slot:0       `);
                     } else {
                         let secunde = Math.floor(elapsed / 1000), abcd = "", mnpo = "";
                         if (elapsed < 7000) {
@@ -1168,7 +1583,7 @@
                     updateLCD(`PURJARE    | ${c1} ${c2} ${c3} ${c4}`, "Ap. btn. C1,C2,C3,C4", `pt. reumpl. B1: x${Math.max(1, 3 - window.b1Presses)}  `, "pt. anulare B1: x1  ");
                 }
                 else if (window.fsmState === "SBOFF" || window.fsmState === "SOFF") {
-                    updateLCD("Sistem Spray INACTIV", `A1:   ${window.puffs[0]}p  A3:   ${window.puffs[2]}p`, `A2:   ${window.puffs[1]}p  A4:   ${window.puffs[3]}p`, window.fsmState === "SBOFF" ? "ACCES BLOCAT!       " : "deblocati B2        ");
+                    updateLCD("Sistem Spray INACTIV", `A1:   ${window.puffs[0]}p  A3:   ${window.puffs[2]}p`, `A2:   ${window.puffs[1]}p  A4:   ${window.puffs[3]}p`, window.fsmState === "SBOFF" ? "ACCES BLOCAT!        " : "deblocati B2         ");
                 }
                 else if (window.fsmState === "SN") {
                     if (window.puffingChannel !== -1) {
