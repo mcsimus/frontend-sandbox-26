@@ -282,6 +282,41 @@
           .tooltip-title { font-size: 13px; margin-bottom: 4px; }
           .tooltip-desc { font-size: 11px; line-height: 1.2; }
       }
+	  
+	  /* 📟 Calibrare milimetrică dedicată pentru Tablete în mod Landscape */
+        @media screen and (min-width: 901px) and (max-width: 1366px) and (orientation: landscape) {
+            .header { display: none !important; }
+            body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
+            .aspect-wrapper {
+                position: relative; 
+                width: 100%; height: auto; 
+                max-width: 100%; max-height: 100%;
+                aspect-ratio: 6561.51 / 3109.91; 
+                border: none; border-radius: 0; box-shadow: none; background: transparent;
+                display: flex; justify-content: center; align-items: center;
+            }
+
+            /* Poziția fin reglată pentru bannerul auriu pe ecranul tabletei */
+            #tour-banner {
+                top: 17.5% !important;     /* Ajustat fin pe verticală */
+                left: 78.2% !important;    /* Ajustat fin pe orizontală */
+                width: 21.5% !important;   /* Lățime optimizată pentru LCD-ul tabletei */
+                transform: translate(-50%, -50%) !important;
+                padding: 1% 0.8% !important;
+            }
+            #tour-text {
+                font-size: clamp(0.55rem, 0.8vw, 0.75rem) !important;
+            }
+            
+            .tooltip-card { padding: 10px 15px; max-width: 380px; bottom: 3vh; gap: 10px; }
+            .tooltip-tag { width: 35px; height: 35px; font-size: 13px; }
+            .tooltip-tag.usb-shape { width: 55px; font-size: 12px; }
+            .tooltip-title { font-size: 13px; margin-bottom: 4px; }
+            .tooltip-desc { font-size: 12px; line-height: 1.2; }
+        }
+	  
+	  
+	  
     </style>
 </head>
 <body class="master-off">
