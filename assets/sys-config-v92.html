@@ -283,30 +283,35 @@
           .tooltip-desc { font-size: 11px; line-height: 1.2; }
       }
 	  
-	  /* 📟 Afișare exactă ca pe desktop, cu titlu vizibil și margini negre pe tabletă */
+	  /* 📟 Afișare desktop încadrată cu spații negre (margini) pe tabletă */
         @media screen and (min-width: 901px) and (max-width: 1400px) and (orientation: landscape) {
             body { 
-                background-color: #000000 !important; /* Margini negre pe ecranul tabletei */
+                background-color: #000000 !important; /* Marginile negre exterioare */
                 margin: 0 !important;
-                padding: 1vh 2vw !important; 
+                padding: 1.5vh 3vw !important; /* Spațiul negru din jur */
                 height: 100vh !important; 
                 height: 100dvh !important; 
                 display: flex !important;
-                flex-direction: column !important; /* Păstrează titlul deasupra și containerul dedesubt */
+                flex-direction: column !important;
                 align-items: center !important;
+                justify-content: center !important;
                 overflow: hidden !important;
+            }
+            .header { 
+                flex-shrink: 0 !important; 
+                margin-bottom: 1vh !important; 
             }
             .interactive-container {
                 flex-grow: 1 !important;
                 width: 100% !important;
-                height: auto !important;
-                max-height: calc(100vh - 100px) !important;
+                /* Blochează lățimea maximă respectând exact raportul SVG-ului pentru a lăsa spații negre laterale corecte */
+                max-width: calc((100vh - 90px) * (6561.51 / 3109.91)) !important; 
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
             }
             .aspect-wrapper {
-                width: auto !important;
+                width: 100% !important;
                 height: 100% !important;
                 max-width: 100% !important;
                 max-height: 100% !important;
