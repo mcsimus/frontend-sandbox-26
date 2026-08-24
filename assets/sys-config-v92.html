@@ -836,7 +836,7 @@
                 updateInfoSwitchVisuals();
             }
             
-            const mediaQuery = window.matchMedia("(max-width: 1000px) and (orientation: landscape)");
+            const mediaQuery = window.matchMedia("(max-width: 1366px) and (orientation: landscape), (pointer: coarse) and (orientation: landscape)");
             
             function handleOrientationChange(e) {
                 const mainSvg = document.querySelector('.overlay-svg');
