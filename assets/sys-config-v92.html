@@ -283,6 +283,34 @@
           .tooltip-desc { font-size: 11px; line-height: 1.2; }
       }
 	  
+	  /* 📟 Forțare afișare exactă ca pe desktop, cu margini negre pe tabletă */
+        @media screen and (min-width: 901px) and (max-width: 1366px) and (orientation: landscape) {
+            body { 
+                background-color: #000000 !important; /* Fundalul negru pentru margini */
+                padding: 1.5vh 2vw !important; 
+                height: 100vh !important; 
+                height: 100dvh !important; 
+                overflow: hidden !important;
+            }
+            .interactive-container {
+                width: 100% !important;
+                height: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .aspect-wrapper {
+                width: auto !important;
+                height: auto !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                aspect-ratio: 6561.51 / 3109.91 !important;
+                border: 3px solid #1e293b;
+                border-radius: 12px;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+                background: #0f172a;
+            }
+        }
     </style>
 </head>
 <body class="master-off">
