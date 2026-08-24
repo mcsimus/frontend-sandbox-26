@@ -252,41 +252,42 @@
             .header, .interactive-container { display: none !important; }
         }
 
-        @media screen and (max-width: 1000px) and (orientation: landscape) {
-            .header { display: none !important; }
-            body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
-            .aspect-wrapper {
-                position: relative; 
-                width: 100%; height: auto; 
-                max-width: 100%; max-height: 100%;
-                aspect-ratio: 6561.51 / 3109.91; 
-                border: none; 
-                border-radius: 0; 
-                box-shadow: none; 
-                background: transparent;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        /* Reguli Landscape extinse pentru telefoane și tablete (Soluția 1: pointer: coarse) */
+      @media screen and (max-width: 1366px) and (orientation: landscape), screen and (pointer: coarse) and (orientation: landscape) {
+          .header { display: none !important; }
+          body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
+          .aspect-wrapper {
+              position: relative; 
+              width: 100%; height: auto; 
+              max-width: 100%; max-height: 100%;
+              aspect-ratio: 6561.51 / 3109.91; 
+              border: none; 
+              border-radius: 0; 
+              box-shadow: none; 
+              background: transparent;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
 
-            /* Poziționare banner pe mobil landscape exact peste LCD */
-            #tour-banner {
-                top: 18% !important;
-                left: 78.5% !important;
-                width: 21% !important;
-                transform: translate(-50%, -50%) !important;
-                padding: 0.8% 0.6% !important;
-            }
-            #tour-text {
-                font-size: clamp(0.45rem, 0.65vw, 0.65rem) !important;
-            }
-            
-            .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
-            .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
-            .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
-            .tooltip-title { font-size: 13px; margin-bottom: 4px; }
-            .tooltip-desc { font-size: 11px; line-height: 1.2; }
-        }
+          /* Poziționare banner pe mobil/tabletă landscape exact peste LCD */
+          #tour-banner {
+              top: 18% !important;
+              left: 78.5% !important;
+              width: 21% !important;
+              transform: translate(-50%, -50%) !important;
+              padding: 0.8% 0.6% !important;
+          }
+          #tour-text {
+              font-size: clamp(0.45rem, 0.65vw, 0.65rem) !important;
+          }
+
+          .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
+          .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
+          .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
+          .tooltip-title { font-size: 13px; margin-bottom: 4px; }
+          .tooltip-desc { font-size: 11px; line-height: 1.2; }
+      }
     </style>
 </head>
 <body class="master-off">
@@ -805,7 +806,7 @@
                 updateInfoSwitchVisuals();
             }
             
-            const mediaQuery = window.matchMedia("(max-width: 1000px) and (orientation: landscape)");
+            const mediaQuery = window.matchMedia("(max-width: 1366px) and (orientation: landscape), (pointer: coarse) and (orientation: landscape)");
             
             function handleOrientationChange(e) {
                 const mainSvg = document.querySelector('.overlay-svg');
