@@ -283,24 +283,24 @@
           .tooltip-desc { font-size: 11px; line-height: 1.2; }
       }
 	  
-	  /* 📟 Forțare afișare exactă ca pe desktop, centrată cu margini negre pe tabletă */
+	  /* 📟 Afișare exactă ca pe desktop, cu titlu vizibil și margini negre pe tabletă */
         @media screen and (min-width: 901px) and (max-width: 1400px) and (orientation: landscape) {
             body { 
                 background-color: #000000 !important; /* Margini negre pe ecranul tabletei */
                 margin: 0 !important;
-                padding: 0 !important;
+                padding: 1vh 2vw !important; 
                 height: 100vh !important; 
                 height: 100dvh !important; 
                 display: flex !important;
-                justify-content: center !important;
+                flex-direction: column !important; /* Păstrează titlul deasupra și containerul dedesubt */
                 align-items: center !important;
                 overflow: hidden !important;
             }
-            .header { display: none !important; }
             .interactive-container {
+                flex-grow: 1 !important;
                 width: 100% !important;
-                height: 100% !important;
-                max-width: none !important;
+                height: auto !important;
+                max-height: calc(100vh - 100px) !important;
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
