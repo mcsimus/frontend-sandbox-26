@@ -1173,6 +1173,14 @@
                     if (panouBgRect) panouBgRect.setAttribute("width", "2034.7"); 
                     
                     if (lcdGrup) lcdGrup.setAttribute("transform", "translate(-6140, -380) scale(2.1)");
+					// --- ADĂUGAT: Mută bannerul de tur fix deasupra LCD-ului pe mobil
+                    const tourBanner = document.getElementById("tour-banner-fo");
+                    if (tourBanner) {
+                        tourBanner.setAttribute("x", "450");
+                        tourBanner.setAttribute("y", "300");
+                        tourBanner.setAttribute("width", "2000"); // Îl facem aproape cât lățimea noului LCD
+                    }
+                    // ---
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (hitB1Hold) hitB1Hold.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     
@@ -1209,6 +1217,15 @@
                         if(autIcons) autIcons.removeAttribute("transform");
                         if(ledIcons) ledIcons.removeAttribute("transform");
                     }
+
+                    // --- AICI PUI BLOCUL PENTRU DESKTOP ---
+                    const tourBanner = document.getElementById("tour-banner-fo");
+                    if (tourBanner) {
+                        tourBanner.setAttribute("x", "5570");
+                        tourBanner.setAttribute("y", "1500");
+                        tourBanner.setAttribute("width", "950");
+                    }
+                    // ---------------------------------------
                 }
             }
             mediaQuery.addEventListener("change", handleOrientationChange);
