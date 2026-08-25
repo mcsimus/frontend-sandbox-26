@@ -837,7 +837,7 @@
                 mouse.style.transform = 'translate(4500px, 2000px)'; 
                 setTimeout(() => {
                     const esteMobil = window.matchMedia("(max-width: 1000px) and (orientation: landscape)").matches;
-                    mouse.style.transform = esteMobil ? 'translate(7600px, 2660px)' : 'translate(6060px, 2660px)'; 
+                    mouse.style.transform = esteMobil ? 'translate(6800px, 2660px)' : 'translate(6060px, 2660px)'; 
                     
                     setTimeout(() => {
                         document.body.classList.remove('hide-cursor');
@@ -919,8 +919,11 @@
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                if(mouse) mouse.style.transform = 'translate(5803px, 1396px)';
-                await new Promise(r => setTimeout(r, 1200)); 
+                if(mouse) {
+				const esteMobil = window.matchMedia("(max-width: 1000px) and (orientation: landscape)").matches;
+				mouse.style.transform = esteMobil ? 'translate(6200px, 1850px)' : 'translate(5803px, 1396px)';
+				}
+				await new Promise(r => setTimeout(r, 1200));
                 
                 const eticB1Hold = document.getElementById('eticheta_b1_hold');
                 if(eticB1Hold) eticB1Hold.style.opacity = '1';
@@ -1050,7 +1053,8 @@
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.transform = 'translate(5970px, 2660px)';
+                            const esteMobil = window.matchMedia("(max-width: 1000px) and (orientation: landscape)").matches;
+                            mouse.style.transform = esteMobil ? 'translate(6520px, 2660px)' : 'translate(5970px, 2660px)'; // <--- AICI SUNT COORDONATELE NOI
                             setTimeout(() => {
                                 document.body.classList.remove('hide-cursor');
                                 resolve();
