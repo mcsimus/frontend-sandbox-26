@@ -319,10 +319,10 @@
                 gap: 10px !important;          /* Spațiul dintre buline, text și buton mai mic */
                 min-height: auto !important;   /* Permite bannerului să se micșoreze cât are nevoie */
             }
-            #tour-text { font-size: 32px !important; } /* <--- AICI ESTE MĂRIMEA TEXTULUI PE MOBIL */
-            #tour-skip-btn { font-size: 26px !important; padding: 10px 30px !important; }
-            .tour-dot { width: 20px !important; height: 20px !important; }
-            .tour-dot.active { width: 26px !important; height: 26px !important; }
+            #tour-text { font-size: 80px !important; } /* <--- AICI ESTE MĂRIMEA TEXTULUI PE MOBIL */
+            #tour-skip-btn { font-size: 60px !important; padding: 10px 30px !important; }
+            .tour-dot { width: 40px !important; height: 40px !important; }
+            .tour-dot.active { width: 36px !important; height: 36px !important; }
         }
     </style>
 </head>
@@ -369,7 +369,7 @@
                     </mask>
                 </defs>
 
-                <image href="https://atb.mcsimus.ro/assets/11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="xMidYMid meet" pointer-events="none" />
+                <image href="11.png" x="0" y="0" width="6561.51" height="3109.91" preserveAspectRatio="xMidYMid meet" pointer-events="none" />
 
                 <!-- COMUTATOR INFO ÎN SVG -->
                 <g id="info-switch-svg" cursor="pointer" transform="translate(180, 150)">
@@ -1176,9 +1176,9 @@
 					// --- ADĂUGAT: Mută bannerul de tur fix deasupra LCD-ului pe mobil
                     const tourBanner = document.getElementById("tour-banner-fo");
                     if (tourBanner) {
-                        tourBanner.setAttribute("x", "450");
-                        tourBanner.setAttribute("y", "300");
-                        tourBanner.setAttribute("width", "2000"); // Îl facem aproape cât lățimea noului LCD
+                        tourBanner.setAttribute("x", "5660");
+                        tourBanner.setAttribute("y", "400");
+                        tourBanner.setAttribute("width", "1800"); // Îl facem aproape cât lățimea noului LCD
                     }
                     // ---
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
