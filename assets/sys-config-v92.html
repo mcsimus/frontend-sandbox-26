@@ -146,20 +146,21 @@
         .icon-on, .icon-off { pointer-events: none; }
         #lcd_text_group { font-family: 'Share Tech Mono', monospace; font-size: 50px; }
 
-        /* ================= BANNER AURIU & TUR GHIDAT (INTEGRAT SVG) ================= */
-        #tour-banner-wrapper {
-			width: 100%; 
-			height: max-content; /* Înaltimea se adaptează dupa text */
-			min-height: 480px; /* Păstrează înălțimea inițială când textul e scurt */
+        /* ================= TEMA BANNERE AURII (MODULAR) ================= */
+        .golden-banner-theme {
+            width: 100%; 
+            height: max-content; 
+            min-height: 480px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(15, 23, 42, 0.96); border-radius: 40px; padding: 40px;
-            box-sizing: border-box; text-align: center; gap: 50px;
+            box-sizing: border-box; text-align: center; gap: 30px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
             border: 15px solid transparent;
             background-image: linear-gradient(rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96)), 
                               linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             background-origin: border-box; background-clip: padding-box, border-box;
             pointer-events: auto; 
+            position: relative;
         }
 
         #tour-text { font-size: 65px; line-height: 1.4; color: #d4af37; font-weight: bold; margin: 0;}
@@ -176,30 +177,78 @@
             0% { filter: drop-shadow(0 0 5px #ffd700) brightness(1); }
             100% { filter: drop-shadow(0 0 30px #ffd700) brightness(1.7); }
         }
-		/* Indicator Progres Tur */
+
+        /* Indicator Progres Tur */
         #tour-progress {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: -15px; /* Corectare spațiere față de text */
+            display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 5px;
         }
-        
         .tour-dot {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #1e293b; /* Culoarea fondului dark */
-            border: 3px solid rgba(212, 175, 55, 0.3); /* Margine fină aurie */
+            width: 35px; height: 35px; border-radius: 50%;
+            background-color: #1e293b; border: 3px solid rgba(212, 175, 55, 0.3);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        
         .tour-dot.active {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
-            border: 3px solid #ffffff;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8); /* Strălucire aurie */
+            border: 3px solid #ffffff; box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+        }
+
+        /* STILURI NOI - GHID CONTEXTUAL */
+        .guide-close-btn {
+            position: absolute; top: 25px; right: 40px;
+            background: transparent; border: none; color: #d4af37;
+            font-size: 60px; font-weight: bold; cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            padding: 0; line-height: 0.8;
+            pointer-events: auto !important;
+        }
+        .guide-close-btn:hover { transform: scale(1.2); color: #fcf6ba; }
+        
+        #show-guide-btn-wrapper {
+            display: flex; justify-content: center; align-items: flex-start;
+            width: 100%; height: 100%; pointer-events: auto; padding-top: 50px;
+        }
+        #show-guide-btn {
+            background: linear-gradient(135deg, #bf953f, #aa771c); color: #ffffff;
+            border: none; padding: 25px 60px; border-radius: 40px; font-size: 50px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border: 5px solid #fcf6ba;
+            transition: transform 0.2s, filter 0.2s; pointer-events: auto;
+        }
+        #show-guide-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+        
+        .guide-content { width: 100%; display: flex; flex-direction: column; }
+        .guide-content h2 { 
+            color: #fcf6ba; font-size: 44px; margin: 0 0 15px 0; 
+            border-bottom: 2px solid #bf953f; padding-bottom: 10px; text-transform: uppercase;
+        }
+        .guide-content p { 
+            color: #cbd5e1; font-size: 40px; line-height: 1.4; text-align: left; margin: 0 0 10px 0; 
+        }
+        
+        /* CASETA PENTRU ACȚIUNI */
+        .guide-action-box {
+            background: rgba(15, 23, 42, 0.6) !important;
+            border-left: 6px solid #38bdf8 !important;
+            padding: 20px 25px !important;
+            margin-top: 25px !important;
+            border-radius: 0 10px 10px 0 !important;
+            text-align: left !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: block !important;
+        }
+        .guide-content .guide-action-box p {
+            font-size: 38px !important;
+            color: #e2e8f0 !important;
+            margin-bottom: 14px !important;
+            display: block !important;
+            line-height: 1.4 !important;
+        }
+        .guide-content .guide-action-box p:last-child {
+            margin-bottom: 0 !important;
+        }
+        .guide-action-box strong {
+            color: #38bdf8;
         }
 
         /* ================= TOOLTIP ================= */
@@ -249,19 +298,10 @@
             .header { display: none !important; }
             body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
             .aspect-wrapper {
-                position: relative; 
-                width: 100%; height: auto; 
-                max-width: 100%; max-height: 100%;
-                aspect-ratio: 6561.51 / 3109.91; 
-                border: none; 
-                border-radius: 0; 
-                box-shadow: none; 
-                background: transparent;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                position: relative; width: 100%; height: auto; max-width: 100%; max-height: 100%;
+                aspect-ratio: 6561.51 / 3109.91; border: none; border-radius: 0; box-shadow: none; 
+                background: transparent; display: flex; justify-content: center; align-items: center;
             }
-            
             .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
             .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
             .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
@@ -293,19 +333,16 @@
                     <filter id="mist-blur" x="-100%" y="-100%" width="300%" height="300%">
                         <feGaussianBlur stdDeviation="50" />
                     </filter>
-                    
                     <linearGradient id="mist-grad" x1="0" y1="1" x2="0" y2="0">
                         <stop offset="0%" stop-color="white" stop-opacity="0.95" />
                         <stop offset="35%" stop-color="white" stop-opacity="0.65" />
                         <stop offset="100%" stop-color="white" stop-opacity="0" />
                     </linearGradient>
-
                     <g id="btn_b1_graphic">
                         <path fill="none" stroke="#FA0A0A" stroke-width="3.18" stroke-miterlimit="22.92" d="M5769.28 1045.93c0,18.95 15.36,34.32 34.32,34.32 18.95,0.01 34.32,-15.35 34.32,-34.31 0,-18.95 -15.36,-34.32 -34.31,-34.33 -18.96,0 -34.33,15.35 -34.33,34.31"/>
                         <path fill="none" stroke="white" stroke-width="3.18" stroke-miterlimit="22.92" d="M5763.59 1045.93c-0,22.09 17.91,40.01 40,40.01 22.1,0 40.01,-17.91 40.02,-40 0,-22.1 -17.91,-40.01 -40,-40.02 -22.09,-0 -40.01,17.9 -40.02,40"/>
                         <polyline fill="none" stroke="white" stroke-width="3.18" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="5760.24,1073.22 5758.23,1021.99 5801.42,994.54 5846.96,1018.31 5848.97,1069.53 5805.77,1096.99 5760.24,1073.22 "/>
                     </g>
-
                     <mask id="darkness-mask">
                         <rect width="100%" height="100%" fill="white" />
                         <path id="mask-m1" class="menu-hole" data-ch="1" d="M507.9 1040.2l21.82 -29.77 5.38 -8.08c9.56,-11.41 41.13,-29.61 53.85,-34.44 83.31,-31.59 180.01,11.49 204.62,68.26 2.41,7.36 10.14,18.64 14.08,28.04 4.66,11.14 7.42,19.7 9.91,31.62 7.76,37.13 -1.64,48.97 -1.89,78.41 -9.15,9.93 -16.88,32.91 -25.88,44.13 -6.28,7.83 -25.67,27.65 -36.17,27.03 -20.03,26.98 -75.96,24.92 -110.75,22.74 -23.56,-6.29 -45.42,-12.07 -63.09,-24.32 -26.61,-13.15 -57.56,-48.37 -70.83,-77.87 -25.11,-55.82 -10.01,-85.65 -1.03,-125.75zm405.82 -242.62c2,-12.53 -17.97,-49.33 -23.39,-59.11 -18.14,-32.76 -65.78,-80.77 -100.96,-93.63 -11.88,-4.35 -18.06,-15.29 -47.05,-17.42 -18.86,-18.15 -112.34,-11 -134.18,-5.34 -24.15,6.26 -59.6,20.26 -79.53,36.52 -4.15,3.38 -6.05,5.72 -10.01,9.35 -83.62,76.48 -70.77,144.81 -63.81,251.27 5.89,90.1 18.49,189.03 25.37,281.91l6.36 43.57c0.95,68.51 7.73,106.08 52.24,162.83 5.21,6.64 11.79,16.8 17.98,19.01 8.46,15.34 9.8,3.28 19.93,17.23 9.06,12.47 8.26,6.51 21.68,17.48 5.55,4.53 8.26,6.57 14.58,10.53 34.14,21.39 52.68,17.85 76.46,26.44 14.98,6.86 41.48,3.02 58.67,-0.09 1.78,-0.33 6.63,-1.58 7.13,-1.53l3.07 3.04c0.12,0.19 0.36,1.05 0.66,1.5 11.64,-1.28 46.42,-5.66 55.89,-9.36 4.98,-1.94 17.99,-7 21.52,-8.79l5.88 -4.38c5.44,-4.35 3.05,-1.3 11.74,-4.51 19.53,-7.22 54.23,-42.01 67.03,-61.23 10.47,-15.71 14.75,-21.91 20.88,-42.04 5.62,-18.44 11.54,-30.35 12.76,-50.74 0.94,-15.76 -2.17,-115.91 -5.44,-122.49 -2.27,-54.84 -7.85,-110.43 -11.28,-167.87l-9.57 -144.64c-0.74,-9.95 -0.14,-15.21 -4.59,-21.28 1.96,-11.82 0.89,-22.39 -0.68,-34.59l-4.03 -23.22c-3.11,-7.7 0.43,-2.99 -5.32,-8.42z"/>
@@ -461,7 +498,6 @@
                         <g id="lcd_grup_sus" class="fade-element" pointer-events="none">
                             <rect class="hitbox t-trigger" data-type="lcd" x="5560.94" y="279.05" width="964.84" height="392.1" fill="transparent" pointer-events="all"/>
                             
-                            <!-- Buton MANUAL -->
                             <a href="https://atb.mcsimus.ro/manual" target="_blank" title="pentru documentatia detaliata a utilizarii dati click" pointer-events="all" style="cursor: pointer;">
                                 <g transform="translate(5803, 140)">
                                     <rect x="0" y="0" width="480" height="110" rx="55" fill="rgba(15, 23, 42, 0.85)" stroke="#38bdf8" stroke-width="4"/>
@@ -488,7 +524,7 @@
                                 <rect id="b1_hold_switch" class="toggle-btn off t-trigger" data-type="b1_hold" x="5750" y="1010" width="107" height="70" rx="35" fill="#E53224" stroke="#FFFEFC" stroke-width="3.18" />
                                 <circle id="b1_hold_thumb" cx="5785" cy="1045" r="24" fill="#ffffff" pointer-events="none" style="transition: transform 0.3s ease;"/>
                                 <text id="eticheta_b1_hold" class="fade-element" x="5710" y="955.26" fill="#FFFEFC" font-weight="bold" font-size="154.29px" font-family="Arial" pointer-events="none">B1''</text>
-                                <text id="b1_hold_timer" x="5740" y="1210" fill="#FFFEFC" opacity="0.3" font-weight="bold" font-size="115.7px" font-family="Arial" pointer-events="none" style="display: none;"></text>
+                                <text id="b1_hold_timer" x="5880" y="1080" fill="#FFFEFC" opacity="0.3" font-weight="bold" font-size="115.7px" font-family="Arial" pointer-events="none" style="display: none;"></text>
                             </g>
 
                             <polygon id="b2" class="toggle-btn t-trigger" data-type="b2" fill="#FF1100" stroke="black" stroke-width="3.18" points="6188.13,993.53 6341.14,993.53 6341.14,1098.33 6188.13,1098.33 "/>
@@ -537,12 +573,10 @@
                 </g>
 
                 <!-- ================= ELEMENTE TUR GHIDAT (NATIV SVG) ================= -->
+                <!-- Ridicat la Y=1500 si extins la height 1700 pentru a nu taia contentul si a nu suprapune Master Butoanele -->
                 <g id="tour-group" pointer-events="none">
-                    <!-- Banner Auriu pozitionat fix in panoul din dreapta (zona libera) -->
-                    <!-- Banner Auriu pozitionat fix in panoul din dreapta (zona libera) -->
-                    <foreignObject id="tour-banner-fo" x="5570" y="1700" width="950" height="1200" pointer-events="none">
-                        <div xmlns="http://www.w3.org/1999/xhtml" id="tour-banner-wrapper">
-                            <!-- Indicator Progres Tur -->
+                    <foreignObject id="tour-banner-fo" x="5570" y="1500" width="950" height="1700" pointer-events="none">
+                        <div xmlns="http://www.w3.org/1999/xhtml" id="tour-banner-wrapper" class="golden-banner-theme">
                             <div id="tour-progress">
                                 <div class="tour-dot active" id="dot-1"></div>
                                 <div class="tour-dot" id="dot-2"></div>
@@ -556,11 +590,30 @@
                         </div>
                     </foreignObject>
 
-                    <!-- Mouse Simulat desenat nativ, cu tip-ul in coordonate 0,0 -->
-					<g id="simulated-mouse-svg" transform="translate(3280, 1550)" style="opacity: 0; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;">
-					<polygon transform="scale(0.5)" points="0,0 210,135 105,150 60,270" fill="#38bdf8" stroke="#ffffff" stroke-width="12" stroke-linejoin="round" filter="drop-shadow(0px 20px 20px rgba(0,0,0,0.8))"/>
-</g>
+                    <g id="simulated-mouse-svg" transform="translate(3280, 1550)" style="opacity: 0; transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;">
+                        <polygon transform="scale(0.5)" points="0,0 210,135 105,150 60,270" fill="#38bdf8" stroke="#ffffff" stroke-width="12" stroke-linejoin="round" filter="drop-shadow(0px 20px 20px rgba(0,0,0,0.8))"/>
+                    </g>
                 </g>
+
+                <!-- ================= ASISTENT CONTEXTUAL (GHID) ================= -->
+                <!-- Asezat pe aceeasi pozitie sigura cu fereastra 1700px -->
+                <g id="ghid-contextual-group" style="display: none;">
+                    <foreignObject id="guide-banner-fo" x="5570" y="1500" width="950" height="1700" pointer-events="none">
+                        <div xmlns="http://www.w3.org/1999/xhtml" class="golden-banner-theme" id="guide-banner-wrapper" style="justify-content: flex-start; padding-top: 50px;">
+                            <button class="guide-close-btn" onclick="window.GhidInteligent.hide()">✖</button>
+                            <div id="guide-content-area" class="guide-content">
+                                <!-- Text injectat de JS -->
+                            </div>
+                        </div>
+                    </foreignObject>
+
+                    <foreignObject id="show-guide-btn-fo" x="5570" y="1500" width="950" height="250" pointer-events="none" style="display: none;">
+                        <div xmlns="http://www.w3.org/1999/xhtml" id="show-guide-btn-wrapper">
+                            <button id="show-guide-btn" onclick="window.GhidInteligent.show()">Afișare Ghid</button>
+                        </div>
+                    </foreignObject>
+                </g>
+
             </svg>
 
             <a href="https://www.plastyprod.ro" target="_blank" title="Vizitati www.plastyprod.ro" class="ppd-click-area"></a>
@@ -575,6 +628,171 @@
     </main>
 
     <script>
+        // =========================================================
+        // === MODUL: GHID INTELIGENT (ASISTENT CONTEXTUAL MANUAL) ===
+        // === Este pus in scope global ca sa fie accesibil din butoane ===
+        // =========================================================
+        const GhidInteligent = {
+            active: false,
+            lastStateCode: "",
+            
+            init: function() {
+                const group = document.getElementById('ghid-contextual-group');
+                if(group) group.style.display = ''; // Eliminam display none 
+                this.show();
+            },
+            
+            show: function() {
+                this.active = true;
+                const bGuide = document.getElementById('guide-banner-fo');
+                const bBtn = document.getElementById('show-guide-btn-fo');
+                if(bGuide) bGuide.style.display = '';
+                if(bBtn) bBtn.style.display = 'none';
+                this.forceUpdate();
+            },
+            
+            hide: function() {
+                this.active = false;
+                const bGuide = document.getElementById('guide-banner-fo');
+                const bBtn = document.getElementById('show-guide-btn-fo');
+                if(bGuide) bGuide.style.display = 'none';
+                if(bBtn) bBtn.style.display = '';
+            },
+            
+            forceUpdate: function() {
+                this.lastStateCode = "";
+                this.checkState();
+            },
+            
+            checkState: function() {
+                if (!this.active) return;
+                
+                let currentStateCode = "MASTER_OFF";
+                let now = Date.now();
+                let elapsed = window.fsmState === "SI" ? (now - window.fsmStart) : 0;
+                
+                // Logica de mapare a starilor aparatului
+                if (!window.isMasterAutOn) {
+                    currentStateCode = "MASTER_OFF";
+                } else if (window.fsmState === "SI") {
+                    if (elapsed <= 3000) currentStateCode = "INIT_FASTBOOT";
+                    else currentStateCode = "INIT_TEST";
+                } else if (window.fsmState === "SPJ_ACTIVE" || window.fsmState === "SPJ_REFILL") {
+                    currentStateCode = "PURJARE";
+                } else if (window.fsmState === "SAP") {
+                    currentStateCode = "SAP";
+                } else if (window.fsmState === "SBOFF" || window.fsmState === "SOFF") {
+                    currentStateCode = "BLOCKED";
+                } else if (window.fsmState === "SN") {
+                    if (window.demoModeActive) {
+                        if (window.showModeActive) currentStateCode = "DEMO_SHOW";
+                        else currentStateCode = "DEMO_STANDBY";
+                    } else if (window.partyModeActive) {
+                        currentStateCode = "PARTY";
+                    } else {
+                        currentStateCode = "STANDBY";
+                    }
+                }
+                
+                // Actualizăm afișajul doar dacă se schimbă starea (pentru a evita flicker-ul)
+                if (currentStateCode !== this.lastStateCode) {
+                    this.lastStateCode = currentStateCode;
+                    this.renderContent(currentStateCode);
+                }
+            },
+            
+            renderContent: function(code) {
+                let html = "";
+                switch(code) {
+                    case "MASTER_OFF":
+                        html = `<h2>Sistem Oprit (Aut = OFF)</h2>
+                                <p>Sistemul de automatizare a fost închis, iar aparatul este scos de sub tensiune.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Pt. Scenariu Normal:</strong> Comutați B2 pe ON (I), apoi porniți Aut.</p>
+                                    <p><strong>Pt. Mod DEMO:</strong> Comutați B2 pe OFF (0), apoi porniți Aut.</p>
+                                </div>`;
+                        break;
+                    case "INIT_FASTBOOT":
+                        html = `<h2>Faza 1: Fast-Boot</h2>
+                                <p>Sistemul a fost alimentat și pornește interfața logică executând diagnoza de bază.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Așteptați 3 secunde</strong> trecerea automată la faza a 2-a de testare hardware.</p>
+                                </div>`;
+                        break;
+                    case "INIT_TEST":
+                        html = `<h2>Faza 2: Autotest Hardware</h2>
+                                <p>Aparatul verifică pe rând modulele luminoase. Zonele testate sunt indicate pe ecran.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Așteptați 27 secunde</strong> finalizarea testului. Sistemul va cere amorsarea.</p>
+                                    <p><strong>Apăsați B1 de 3 ori (x3)</strong> pentru a sări testul (doar în Modul Demo).</p>
+                                </div>`;
+                        break;
+                    case "PURJARE":
+                        html = `<h2>Etapa: Purjare Automată</h2>
+                                <p>Amorsarea este obligatorie la pornire pentru evacuarea aerului de pe circuite.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Apăsați pe rând C1, C2, C3, C4.</strong> Lăsați ~2s între ele, până când devin complet Verzi.</p>
+                                    <p><strong>Apăsați B1 (x1)</strong> pentru a ieși parțial din etapă sau a o anula.</p>
+                                </div>`;
+                        break;
+                    case "SAP":
+                        html = `<h2>Tranziție Sistem</h2>
+                                <p>Etapa de purjare s-a încheiat. Aparatul memorează setările.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Așteptați</strong> ca aparatul să intre în regimul de funcționare ales.</p>
+                                </div>`;
+                        break;
+                    case "STANDBY":
+                        html = `<h2>Regim Normal - Standby (Activ)</h2>
+                                <p>Aparatul este gata de utilizare.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Apăsați C1-C4</strong> pentru a difuza instant parfum.</p>
+                                    <p><strong>Apăsați B1 x3</strong> pentru a reintra în meniul Purjare.</p>
+                                    <p><strong>Țineți apăsat B1'' + apăsați orice Cx</strong> pentru activarea modului PARTY.</p>
+                                    <p><strong>Comutați B2 pe OFF</strong> pentru Blocarea de Siguranță.</p>
+                                </div>`;
+                        break;
+                    case "BLOCKED":
+                        html = `<h2>Blocare Siguranță ACTIVĂ</h2>
+                                <p>Ați oprit accesul comutând B2 pe OFF. Atomizoarele sunt blocate în lipsa operatorului.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Dacă apăsați C1-C4 acum</strong>, aparatul va emite o alertă Roșu-Albastru.</p>
+                                    <p><strong>Comutați B2 pe ON</strong> pentru a debloca aparatul și a relua lucrul.</p>
+                                </div>`;
+                        break;
+                    case "DEMO_STANDBY":
+                        html = `<h2>Mod DEMO (Inactiv)</h2>
+                                <p>Atomizoarele sunt dezactivate de siguranță. Butoanele răspund vizual la apăsare, dar nu se consumă parfum.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Apăsați C1-C4</strong> pentru a testa vizual și luminos consolele.</p>
+                                    <p><strong>Apăsați B1 x3</strong> pentru a declanșa manual spectacolul luminos (Modul SHOW).</p>
+                                    <p><strong>Comutați B2 pe ON</strong> pentru a ieși din Demo și a reporni sistemul în regim normal.</p>
+                                </div>`;
+                        break;
+                    case "DEMO_SHOW":
+                        html = `<h2>Mod DEMO (SHOW Activ)</h2>
+                                <p>Rulează automat un spectacol luminos animat intens de 16 secunde la fiecare 10 minute. Atomizoarele rămân blocate.</p>
+                                <div class="guide-action-box">
+                                    <p><strong>Apăsați B1 x3</strong> pentru a opri spectacolul luminos.</p>
+                                    <p><strong>Comutați B2 pe ON</strong> pentru a părăsi definitiv modul Demo.</p>
+                                </div>`;
+                        break;
+                    case "PARTY":
+                        html = `<h2>Mod PARTY (Show Normal)</h2>
+                                <p>Sistemul rulează spectacolul luminos (16s animat / 10m pauză), dar <strong>atomizoarele rămân 100% active.</strong></p>
+                                <div class="guide-action-box">
+                                    <p><strong>Apăsați C1-C4</strong> pentru a elibera parfum în timpul show-ului.</p>
+                                    <p><strong>Apasați butonul B2 pe Off, apoi pe On</strong> pentru a dezactiva Modul PARTY.</p>
+                                </div>`;
+                        break;
+                }
+                document.getElementById('guide-content-area').innerHTML = html;
+            }
+        };
+
+        // Exportam obiectul global in window pentru siguranta apelurilor HTML
+        window.GhidInteligent = GhidInteligent;
+
         let currentTourStep = 1;
         window.step1TooltipDone = false; 
 
@@ -591,9 +809,12 @@
             const mouse = document.getElementById('simulated-mouse-svg');
             if(mouse) mouse.style.opacity = '0';
             document.body.classList.remove('hide-cursor');
+
+            // PORNIM ASISTENTUL!
+            if (window.GhidInteligent) window.GhidInteligent.init();
         }
-		
-		function updateTourProgress(stepIndex) {
+        
+        function updateTourProgress(stepIndex) {
             for (let i = 1; i <= 5; i++) {
                 const dot = document.getElementById('dot-' + i);
                 if (dot) {
@@ -605,25 +826,23 @@
                 }
             }
         }
+
         function runTourStep1() {
             setTourText("Apăsați butonul LED, pentru aprindere logo Ploom.");
-			updateTourProgress(1);
+            updateTourProgress(1);
             const mouse = document.getElementById('simulated-mouse-svg');
             const ledBtn = document.getElementById('buton_master_led');
             
             if(ledBtn) ledBtn.classList.add('flash-intense');
             
-            // 1. Activăm scutul pe durata mișcării inițiale
             document.body.classList.add('hide-cursor'); 
             
             if(mouse) {
                 mouse.style.opacity = '1';
-                mouse.style.transform = 'translate(4500px, 2000px)'; // Porneste din zona central-dreapta
+                mouse.style.transform = 'translate(4500px, 2000px)'; 
                 setTimeout(() => {
-                    mouse.style.transform = 'translate(6060px, 2660px)'; // Merge fix pe centrul butonului LED
+                    mouse.style.transform = 'translate(6060px, 2660px)'; 
                     
-                    // 2. Ridicăm scutul abia DUPĂ ce mouse-ul a ajuns la destinație (1.2 sec) 
-                    // astfel încât utilizatorul să poată da click!
                     setTimeout(() => {
                         document.body.classList.remove('hide-cursor');
                     }, 1200);
@@ -739,7 +958,7 @@
             // --- STEP 3 ---
             async function runTourStep3() {
                 setTourText("Pentru ascunderea descrierilor butoanelor treceti acest switch INFO pe off");
-				updateTourProgress(3);
+                updateTourProgress(3);
                 const mouse = document.getElementById('simulated-mouse-svg');
                 
                 document.body.classList.add('hide-cursor');
@@ -764,7 +983,7 @@
             // --- STEP 4 ---
             async function runTourStep4() {
                 setTourText("Să explorăm acțiunea pe butoane");
-				updateTourProgress(4);
+                updateTourProgress(4);
                 const mouse = document.getElementById('simulated-mouse-svg');
                 
                 document.body.classList.add('hide-cursor');
@@ -841,7 +1060,7 @@
             // --- STEP 5 ---
             async function runTourStep5() {
                 setTourText("Pentru pornire sistem apasati butonul Aut.");
-				updateTourProgress(5);
+                updateTourProgress(5);
                 const mouse = document.getElementById('simulated-mouse-svg');
                 const autBtn = document.getElementById('buton_master_automatizare');
                 
@@ -1459,6 +1678,9 @@
                                 window.partyModeActive = false; 
                                 window.pumpPurged = [false, false, false, false]; 
                                 window.purjareIntrerupta = false;
+                                
+                                // PORNIM ASISTENTUL!
+                                if (window.GhidInteligent) window.GhidInteligent.init();
                             }, 1000); 
                         }, 3000); 
 
@@ -1631,7 +1853,10 @@
             }
 
             setInterval(() => {
-                if (!window.isMasterAutOn) return; 
+                if (!window.isMasterAutOn) {
+                    if (window.GhidInteligent) window.GhidInteligent.checkState();
+                    return;
+                } 
                 let now = Date.now(), elapsed = window.fsmState === "SI" ? (now - window.fsmStart) : 0;
                 updateHardwareVisuals(now, elapsed);
 
@@ -1651,7 +1876,9 @@
 
                 if (window.b1Presses > 0 && !window.purjarePending && now - window.bpWindowStart > 4000) {
                     if ((window.fsmState === "SPJ_ACTIVE" || window.fsmState === "SPJ_REFILL") && window.b1Presses < 3) {
-                        window.b1Presses = 0; window.purjareIntrerupta = true; window.fsmState = "SAP"; window.sapStartTimer = now; return;
+                        window.b1Presses = 0; window.purjareIntrerupta = true; window.fsmState = "SAP"; window.sapStartTimer = now; 
+                        if (window.GhidInteligent) window.GhidInteligent.checkState();
+                        return;
                     }
                     window.b1Presses = 0; 
                 }
@@ -1661,16 +1888,13 @@
                 if (window.fsmState === "SAP") {
                     if (now - window.sapStartTimer > 5000) window.fsmState = window.isB2On ? "SN" : "SOFF";
                     else updateLCD(window.purjareIntrerupta ? " PURJARE INTRERUPTA " : " PURJARE REUSITA!    ", " Tranzitie sistem    ", " catre regim normal ", " Asteptati...        ");
-                    return; 
                 }
-
-                if (window.fsmState === "SI") {
+                else if (window.fsmState === "SI") {
                     let remSec = Math.max(0, 30 - Math.floor(elapsed / 1000));
                     if (window.b1Presses >= 3 || elapsed >= 30000) {
                         window.b1Presses = 0; window.fsmState = window.demoModeActive ? "SN" : "SPJ_ACTIVE"; window.fsmStart = now;
-                        window.pumpPurged = [false, false, false, false]; window.purjareIntrerupta = false; return;
-                    }
-                    if (elapsed <= 3000) {
+                        window.pumpPurged = [false, false, false, false]; window.purjareIntrerupta = false; 
+                    } else if (elapsed <= 3000) {
                         updateLCD("Pornire sistem:      ", "Asteptati initializ.", "btn.B2-OFF-DemoMode ", `FB: ${Math.max(1, 3 - Math.floor(elapsed / 1000))}s Slot:0       `);
                     } else {
                         let secunde = Math.floor(elapsed / 1000), abcd = "", mnpo = "";
@@ -1729,28 +1953,31 @@
                     } 
                     else {
                         if (window.b1Presses >= 3 && window.isB2On && !window.purjarePending) {
-                            window.b1Presses = 0; window.purjarePending = true; window.purjarePendingStart = now; return;
-                        }
-                        if (window.purjarePending && now - window.purjarePendingStart >= 1000) {
+                            window.b1Presses = 0; window.purjarePending = true; window.purjarePendingStart = now; 
+                        } else if (window.purjarePending && now - window.purjarePendingStart >= 1000) {
                             window.purjarePending = false; window.b1Presses = 0; window.bpWindowStart = now; 
-                            window.fsmState = "SPJ_ACTIVE"; window.fsmStart = now; window.pumpPurged = [false, false, false, false]; window.purjareIntrerupta = false; return; 
-                        }
-                        
-                        let r0 = window.partyModeActive ? "Sistem Spray [PARTY]" : "Sistem Spray ACTIV  ";
-                        let r1 = `A1:   ${window.puffs[0]}p  A3:   ${window.puffs[2]}p`;
-                        let r2 = `A2:   ${window.puffs[1]}p  A4:   ${window.puffs[3]}p`;
-                        let r3 = "";
-
-                        if (window.b1Presses > 0 || window.purjarePending) {
-                            r3 = `Purjare B1:x3 - ${Math.floor(now / 250) % 2 === 0 ? (window.purjarePending ? 3 : window.b1Presses) : " "}  `;
+                            window.fsmState = "SPJ_ACTIVE"; window.fsmStart = now; window.pumpPurged = [false, false, false, false]; window.purjareIntrerupta = false;
                         } else {
-                            const scrollText = " Pt. Purjare / Reumplere apasati butonul B1 ";
-                            let pos = Math.floor(now / 250) % scrollText.length;
-                            for (let i = 0; i < 20; i++) r3 += scrollText.charAt((pos + i) % scrollText.length);
+                            let r0 = window.partyModeActive ? "Sistem Spray [PARTY]" : "Sistem Spray ACTIV  ";
+                            let r1 = `A1:   ${window.puffs[0]}p  A3:   ${window.puffs[2]}p`;
+                            let r2 = `A2:   ${window.puffs[1]}p  A4:   ${window.puffs[3]}p`;
+                            let r3 = "";
+
+                            if (window.b1Presses > 0 || window.purjarePending) {
+                                r3 = `Purjare B1:x3 - ${Math.floor(now / 250) % 2 === 0 ? (window.purjarePending ? 3 : window.b1Presses) : " "}  `;
+                            } else {
+                                const scrollText = " Pt. Purjare / Reumplere apasati butonul B1 ";
+                                let pos = Math.floor(now / 250) % scrollText.length;
+                                for (let i = 0; i < 20; i++) r3 += scrollText.charAt((pos + i) % scrollText.length);
+                            }
+                            updateLCD(r0, r1, r2, r3);
                         }
-                        updateLCD(r0, r1, r2, r3);
                     }
                 }
+                
+                // === Apelăm verificarea pentru Ghidul Inteligent (Asistentul) ===
+                if (window.GhidInteligent) window.GhidInteligent.checkState();
+                
             }, 150); 
         });
     </script>
