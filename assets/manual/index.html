@@ -1115,7 +1115,7 @@
         </div>
     </div>
 
-    <script>
+        <script>
         function toggleLandscape(btn) {
             const page = btn.closest('.a4-page');
             page.classList.toggle('landscape-mode');
@@ -1127,7 +1127,6 @@
         }
         
         function toggleZoom(btn) {
-    cons        function toggleZoom(btn) {
             const container = btn.closest('.img-container');
             const page = btn.closest('.a4-page');
             container.classList.toggle('zoomed-mode');
@@ -1136,7 +1135,7 @@
                 page.style.overflow = 'visible';
                 btn.innerHTML = '❌ Închide Zoom';
                 
-                // Poziționare fixă pe CENTRU-SUS, perfect vizibilă pe orice ecran/tabletă
+                // Poziționare fixă pe centru-sus, perfect vizibilă pe orice ecran/tabletă
                 btn.style.position = 'fixed';
                 btn.style.top = '15px';
                 btn.style.left = '50%';
@@ -1162,7 +1161,7 @@
                 btn.style.boxShadow = 'none';
             }
         }
-
     </script>
+
 </body>
 </html>
