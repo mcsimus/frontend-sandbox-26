@@ -1127,17 +1127,35 @@
         }
         
         function toggleZoom(btn) {
-            const container = btn.closest('.img-container');
-            const page = btn.closest('.a4-page');
-            container.classList.toggle('zoomed-mode');
-            if(container.classList.contains('zoomed-mode')) {
-                page.style.overflow = 'visible';
-                btn.innerHTML = '🔍 Închide Zoom';
-            } else {
-                page.style.overflow = 'hidden';
-                btn.innerHTML = '🔍 Zoom x2';
-            }
-        }
+    const container = btn.closest('.img-container');
+    const page = btn.closest('.a4-page');
+    container.classList.toggle('zoomed-mode');
+    
+    if(container.classList.contains('zoomed-mode')) {
+        page.style.overflow = 'visible';
+        btn.innerHTML = '❌ Închide Zoom';
+        
+        // Transformă butonul în element fix pe ecran (nu mai este acoperit de poză)
+        btn.style.position = 'fixed';
+        btn.style.top = '20px';
+        btn.style.right = '20px';
+        btn.style.padding = '10px 16px';
+        btn.style.fontSize = '14px';
+        btn.style.zIndex = '1100';
+    } else {
+        page.style.overflow = 'hidden';
+        btn.innerHTML = '🔍 Zoom x2';
+        
+        // Resetează butonul la poziția inițială din colțul imaginii
+        btn.style.position = 'absolute';
+        btn.style.top = '6px';
+        btn.style.right = '6px';
+        btn.style.padding = '4px 8px';
+        btn.style.fontSize = '10px';
+        btn.style.zIndex = '';
+    }
+}
+
     </script>
 </body>
 </html>
