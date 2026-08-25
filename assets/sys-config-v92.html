@@ -222,7 +222,7 @@
             border-bottom: 2px solid #bf953f; padding-bottom: 10px; text-transform: uppercase;
         }
         .guide-content p { 
-            color: #cbd5e1; font-size: 38px; line-height: 1.4; text-align: left; margin: 0 0 10px 0; 
+            color: #cbd5e1; font-size: 40px; line-height: 1.4; text-align: left; margin: 0 0 10px 0; 
         }
         
         /* CASETA PENTRU ACȚIUNI */
@@ -238,7 +238,7 @@
             display: block !important;
         }
         .guide-content .guide-action-box p {
-            font-size: 28px !important;
+            font-size: 38px !important;
             color: #e2e8f0 !important;
             margin-bottom: 14px !important;
             display: block !important;
@@ -314,15 +314,15 @@
             
             /* ADAPTARE BANNER DE TUR PENTRU MOBIL */
             #tour-banner-wrapper {
-                padding: 15px !important;      /* Marginea interioară a bannerului mai mică */
-                border-width: 5px !important;  /* Marginea transparentă mai subțire */
-                gap: 10px !important;          /* Spațiul dintre buline, text și buton mai mic */
-                min-height: auto !important;   /* Permite bannerului să se micșoreze cât are nevoie */
+                padding: 15px !important;      
+                border-width: 5px !important;  
+                gap: 10px !important;          
+                min-height: auto !important;   
             }
-            #tour-text { font-size: 80px !important; } /* <--- AICI ESTE MĂRIMEA TEXTULUI PE MOBIL */
-            #tour-skip-btn { font-size: 60px !important; padding: 10px 30px !important; }
+            #tour-text { font-size: 80px !important; } 
+            #tour-skip-btn { font-size: 48px !important; padding: 10px 30px !important; }
             .tour-dot { width: 40px !important; height: 40px !important; }
-            .tour-dot.active { width: 36px !important; height: 36px !important; }
+            .tour-dot.active { width: 40px !important; height: 40px !important; }
         }
     </style>
 </head>
@@ -589,7 +589,6 @@
                 </g>
 
                 <!-- ================= ELEMENTE TUR GHIDAT (NATIV SVG) ================= -->
-                <!-- Ridicat la Y=1500 si extins la height 1700 pentru a nu taia contentul si a nu suprapune Master Butoanele -->
                 <g id="tour-group" pointer-events="none">
                     <foreignObject id="tour-banner-fo" x="5570" y="1500" width="950" height="1700" pointer-events="none">
                         <div xmlns="http://www.w3.org/1999/xhtml" id="tour-banner-wrapper" class="golden-banner-theme">
@@ -612,11 +611,9 @@
                 </g>
 
                 <!-- ================= ASISTENT CONTEXTUAL (GHID) ================= -->
-                <!-- Asezat pe aceeasi pozitie sigura cu fereastra 1700px -->
                 <g id="ghid-contextual-group" style="display: none;">
                     <foreignObject id="guide-banner-fo" x="5570" y="1500" width="950" height="1700" pointer-events="none">
                         <div xmlns="http://www.w3.org/1999/xhtml" class="golden-banner-theme" id="guide-banner-wrapper" style="justify-content: flex-start; padding-top: 50px;">
-                            <!-- Micul buton [X] a recăpătat accesul corect JS prin scope-ul window -->
                             <button class="guide-close-btn" onclick="window.GhidInteligent.hide()">✖</button>
                             <div id="guide-content-area" class="guide-content">
                                 <!-- Text injectat de JS -->
@@ -624,7 +621,6 @@
                         </div>
                     </foreignObject>
 
-                    <!-- Butonul minimalist de afisare (inlocuieste bannerul la inchidere) -->
                     <foreignObject id="show-guide-btn-fo" x="5570" y="1500" width="950" height="250" pointer-events="none" style="display: none;">
                         <div xmlns="http://www.w3.org/1999/xhtml" id="show-guide-btn-wrapper">
                             <button id="show-guide-btn" onclick="window.GhidInteligent.show()">Afișare Ghid</button>
@@ -646,20 +642,14 @@
     </main>
 
     <script>
-        // =========================================================
-        // === MODUL: GHID INTELIGENT (ASISTENT CONTEXTUAL MANUAL) ===
-        // === Este pus in scope global ca sa fie accesibil din butoane ===
-        // =========================================================
         const GhidInteligent = {
             active: false,
             lastStateCode: "",
-            
             init: function() {
                 const group = document.getElementById('ghid-contextual-group');
-                if(group) group.style.display = ''; // Eliminam display none 
+                if(group) group.style.display = ''; 
                 this.show();
             },
-            
             show: function() {
                 this.active = true;
                 const bGuide = document.getElementById('guide-banner-fo');
@@ -668,7 +658,6 @@
                 if(bBtn) bBtn.style.display = 'none';
                 this.forceUpdate();
             },
-            
             hide: function() {
                 this.active = false;
                 const bGuide = document.getElementById('guide-banner-fo');
@@ -676,20 +665,16 @@
                 if(bGuide) bGuide.style.display = 'none';
                 if(bBtn) bBtn.style.display = '';
             },
-            
             forceUpdate: function() {
                 this.lastStateCode = "";
                 this.checkState();
             },
-            
             checkState: function() {
                 if (!this.active) return;
-                
                 let currentStateCode = "MASTER_OFF";
                 let now = Date.now();
                 let elapsed = window.fsmState === "SI" ? (now - window.fsmStart) : 0;
                 
-                // Logica de mapare a starilor aparatului
                 if (!window.isMasterAutOn) {
                     currentStateCode = "MASTER_OFF";
                 } else if (window.fsmState === "SI") {
@@ -712,13 +697,11 @@
                     }
                 }
                 
-                // Actualizăm afișajul doar dacă se schimbă starea (pentru a evita flicker-ul)
                 if (currentStateCode !== this.lastStateCode) {
                     this.lastStateCode = currentStateCode;
                     this.renderContent(currentStateCode);
                 }
             },
-            
             renderContent: function(code) {
                 let html = "";
                 switch(code) {
@@ -808,7 +791,6 @@
             }
         };
 
-        // Exportam obiectul global in window pentru siguranta apelurilor HTML
         window.GhidInteligent = GhidInteligent;
 
         let currentTourStep = 1;
@@ -828,7 +810,6 @@
             if(mouse) mouse.style.opacity = '0';
             document.body.classList.remove('hide-cursor');
 
-            // PORNIM ASISTENTUL!
             if (window.GhidInteligent) window.GhidInteligent.init();
         }
         
@@ -836,11 +817,8 @@
             for (let i = 1; i <= 5; i++) {
                 const dot = document.getElementById('dot-' + i);
                 if (dot) {
-                    if (i === stepIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
+                    if (i === stepIndex) dot.classList.add('active');
+                    else dot.classList.remove('active');
                 }
             }
         }
@@ -852,19 +830,18 @@
             const ledBtn = document.getElementById('buton_master_led');
             
             if(ledBtn) ledBtn.classList.add('flash-intense');
-            
             document.body.classList.add('hide-cursor'); 
             
             if(mouse) {
                 mouse.style.opacity = '1';
                 mouse.style.transform = 'translate(4500px, 2000px)'; 
                 setTimeout(() => {
-                    mouse.style.transform = 'translate(6060px, 2660px)'; 
+                    const esteMobil = window.matchMedia("(max-width: 1000px) and (orientation: landscape)").matches;
+                    mouse.style.transform = esteMobil ? 'translate(7600px, 2660px)' : 'translate(6060px, 2660px)'; 
                     
                     setTimeout(() => {
                         document.body.classList.remove('hide-cursor');
                     }, 1200);
-
                 }, 400);
             }
         }
@@ -872,7 +849,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             window.isInfoEnabled = true;
             
-            // --- STEP 2 ---
             async function runTourStep2() {
                 setTourText("Afișare funcțiuni componente");
                 updateTourProgress(2);
@@ -881,15 +857,14 @@
                 document.body.classList.add('hide-cursor');
                 if(mouse) {
                     mouse.style.opacity = '1';
-                    mouse.style.transform = 'translate(5400px, 1900px)'; // Pornire de lângă banner
+                    mouse.style.transform = 'translate(5400px, 1900px)';
                 }
                 
-                // === 1. Oprire la C1 (Buton) ===
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.transform = 'translate(270px, 2511px)'; // Coord. C1
-                            setTimeout(resolve, 1200); // 1.2s pt mișcare
+                            mouse.style.transform = 'translate(270px, 2511px)';
+                            setTimeout(resolve, 1200);
                         }, 200);
                     });
                 }
@@ -899,14 +874,13 @@
                 if(lblC1) lblC1.classList.add('hovered');
                 showTooltip('button', '1');
                 
-                await new Promise(r => setTimeout(r, 2500)); // 2.5s afișare tooltip
+                await new Promise(r => setTimeout(r, 2500));
                 if(lblC1) lblC1.classList.remove('hovered');
                 document.getElementById('info-card').classList.remove('active');
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                // === 2. Oprire la I1 (Inel) ===
-                if(mouse) mouse.style.transform = 'translate(320px, 1645px)'; // Coord. I1
+                if(mouse) mouse.style.transform = 'translate(320px, 1645px)';
                 await new Promise(r => setTimeout(r, 1200)); 
                 
                 const lblI1 = document.getElementById('txt-I1');
@@ -919,8 +893,7 @@
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                // === 3. Oprire la A1 (Atomizor) ===
-                if(mouse) mouse.style.transform = 'translate(186px, 553px)'; // Coord. A1
+                if(mouse) mouse.style.transform = 'translate(186px, 553px)';
                 await new Promise(r => setTimeout(r, 1200)); 
                 
                 const lblA1 = document.getElementById('txt-A1');
@@ -933,8 +906,7 @@
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                // === 4. Oprire la USB ===
-                if(mouse) mouse.style.transform = 'translate(2230px, 150px)'; // Coord. Centru USB
+                if(mouse) mouse.style.transform = 'translate(2230px, 150px)';
                 await new Promise(r => setTimeout(r, 1200)); 
                 
                 const lblUSB = document.getElementById('txt-USB');
@@ -947,33 +919,29 @@
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                // === 5. Oprire la B1'' (Hold - Panoul Dreapta) ===
-                if(mouse) mouse.style.transform = 'translate(5803px, 1396px)'; // Coord. B1''
+                if(mouse) mouse.style.transform = 'translate(5803px, 1396px)';
                 await new Promise(r => setTimeout(r, 1200)); 
                 
                 const eticB1Hold = document.getElementById('eticheta_b1_hold');
-                if(eticB1Hold) eticB1Hold.style.opacity = '1'; // Aprindem eticheta butonului B1''
-                showTooltip('b1_hold', ''); // Afișăm Info-cardul pentru B1''
+                if(eticB1Hold) eticB1Hold.style.opacity = '1';
+                showTooltip('b1_hold', '');
                 
                 await new Promise(r => setTimeout(r, 2500)); 
-                if(eticB1Hold) eticB1Hold.style.opacity = '0.3'; // Stingem eticheta B1'' la loc
+                if(eticB1Hold) eticB1Hold.style.opacity = '0.3';
                 document.getElementById('info-card').classList.remove('active');
                 clearAllHighlights();
                 if (currentTourStep !== 2) return;
 
-                // === 6. Destinația finală C3 ===
                 if(mouse) {
-                    mouse.style.transform = 'translate(4144px, 2511px)'; // Coord C3
+                    mouse.style.transform = 'translate(4144px, 2511px)';
                 }
                 await new Promise(r => setTimeout(r, 1200)); 
 
-                if(mouse) mouse.style.opacity = '0'; // Ascundem mouse-ul simulat
-                document.body.classList.remove('hide-cursor'); // Redăm controlul mouse-ului real
-
+                if(mouse) mouse.style.opacity = '0';
+                document.body.classList.remove('hide-cursor');
                 setTourText("Treceți cu mouse-ul pe butonul C3");
             }
 
-            // --- STEP 3 ---
             async function runTourStep3() {
                 setTourText("Pentru ascunderea descrierilor butoanelor treceti acest switch INFO pe off");
                 updateTourProgress(3);
@@ -982,13 +950,13 @@
                 document.body.classList.add('hide-cursor');
                 if(mouse) {
                     mouse.style.opacity = '1';
-                    mouse.style.transform = 'translate(270px, 1500px)'; // Zona stanga jos
+                    mouse.style.transform = 'translate(270px, 1500px)';
                 }
 
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.transform = 'translate(445px, 215px)'; // Merge fix pe comutatorul INFO
+                            mouse.style.transform = 'translate(445px, 215px)';
                             setTimeout(() => {
                                 document.body.classList.remove('hide-cursor');
                                 resolve();
@@ -998,7 +966,6 @@
                 }
             }
 
-            // --- STEP 4 ---
             async function runTourStep4() {
                 setTourText("Să explorăm acțiunea pe butoane");
                 updateTourProgress(4);
@@ -1007,22 +974,19 @@
                 document.body.classList.add('hide-cursor');
                 if(mouse) {
                     mouse.style.opacity = '1';
-                    // Pornește de la comutatorul Info (unde s-a terminat Pasul 3)
-                    mouse.style.transform = 'translate(445px, 215px)'; 
+                    mouse.style.transform = 'translate(445px, 215px)';
                 }
 
-                // === 1. Mutare pe butonul hardware C1 ===
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.transform = 'translate(805px, 1843px)'; // Coord. buton fizic C1
+                            mouse.style.transform = 'translate(805px, 1843px)';
                             setTimeout(resolve, 1200);
                         }, 200);
                     });
                 }
                 if (currentTourStep !== 4) return;
                 
-                // Animație Puff C1
                 const ch1Group = document.getElementById('ch1');
                 const maskM1 = document.getElementById('mask-m1');
                 if (ch1Group) doPuffAnimation(ch1Group, maskM1, '1', false);
@@ -1031,14 +995,12 @@
                 clearAllHighlights();
                 if (currentTourStep !== 4) return;
 
-                // === 2. Mutare pe butonul hardware C3 ===
                 if(mouse) {
-                    mouse.style.transform = 'translate(4152px, 1851px)'; // Coord. buton fizic C3
+                    mouse.style.transform = 'translate(4152px, 1851px)';
                 }
                 await new Promise(r => setTimeout(r, 1200));
                 if (currentTourStep !== 4) return;
                 
-                // Animație Puff C3
                 const ch3Group = document.getElementById('ch3');
                 const maskM3 = document.getElementById('mask-m3');
                 if (ch3Group) doPuffAnimation(ch3Group, maskM3, '3', false);
@@ -1047,14 +1009,12 @@
                 clearAllHighlights();
                 if (currentTourStep !== 4) return;
 
-                // === 3. Mutare pe butonul hardware C4 ===
                 if(mouse) {
-                    mouse.style.transform = 'translate(4730px, 1854px)'; // Coord. buton fizic C4
+                    mouse.style.transform = 'translate(4730px, 1854px)';
                 }
                 await new Promise(r => setTimeout(r, 1200));
                 if (currentTourStep !== 4) return;
                 
-                // Animație Puff C4
                 const ch4Group = document.getElementById('ch4');
                 const maskM4 = document.getElementById('mask-m4');
                 if (ch4Group) doPuffAnimation(ch4Group, maskM4, '4', false);
@@ -1063,19 +1023,16 @@
                 clearAllHighlights();
                 if (currentTourStep !== 4) return;
 
-                // === 4. Destinația finală: butonul hardware C2 ===
                 if(mouse) {
-                    mouse.style.transform = 'translate(1387px, 1842px)'; // Coord. buton fizic C2
+                    mouse.style.transform = 'translate(1387px, 1842px)';
                 }
                 await new Promise(r => setTimeout(r, 1200));
 
-                if(mouse) mouse.style.opacity = '0'; // Ascundem mouse-ul simulat
-                document.body.classList.remove('hide-cursor'); // Redăm controlul utilizatorului
-
+                if(mouse) mouse.style.opacity = '0';
+                document.body.classList.remove('hide-cursor');
                 setTourText("Apăsați butonul C2");
             }
 
-            // --- STEP 5 ---
             async function runTourStep5() {
                 setTourText("Pentru pornire sistem apasati butonul Aut.");
                 updateTourProgress(5);
@@ -1087,13 +1044,13 @@
                 document.body.classList.add('hide-cursor');
                 if(mouse) {
                     mouse.style.opacity = '1';
-                    mouse.style.transform = 'translate(3000px, 2511px)'; // Baza centrala
+                    mouse.style.transform = 'translate(3000px, 2511px)';
                 }
 
                 if(mouse) {
                     await new Promise(resolve => {
                         setTimeout(() => {
-                            mouse.style.transform = 'translate(5970px, 2660px)'; // Fix pe butonul Aut.
+                            mouse.style.transform = 'translate(5970px, 2660px)';
                             setTimeout(() => {
                                 document.body.classList.remove('hide-cursor');
                                 resolve();
@@ -1173,14 +1130,14 @@
                     if (panouBgRect) panouBgRect.setAttribute("width", "2034.7"); 
                     
                     if (lcdGrup) lcdGrup.setAttribute("transform", "translate(-6140, -380) scale(2.1)");
-					// --- ADĂUGAT: Mută bannerul de tur fix deasupra LCD-ului pe mobil
+                    
                     const tourBanner = document.getElementById("tour-banner-fo");
                     if (tourBanner) {
                         tourBanner.setAttribute("x", "5660");
-                        tourBanner.setAttribute("y", "400");
-                        tourBanner.setAttribute("width", "1800"); // Îl facem aproape cât lățimea noului LCD
+                        tourBanner.setAttribute("y", "500");
+                        tourBanner.setAttribute("width", "1800"); 
                     }
-                    // ---
+
                     if (btnSus) btnSus.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     if (hitB1Hold) hitB1Hold.setAttribute("transform", "translate(-3100, -330) scale(1.6)");
                     
@@ -1218,14 +1175,12 @@
                         if(ledIcons) ledIcons.removeAttribute("transform");
                     }
 
-                    // --- AICI PUI BLOCUL PENTRU DESKTOP ---
                     const tourBanner = document.getElementById("tour-banner-fo");
                     if (tourBanner) {
                         tourBanner.setAttribute("x", "5570");
                         tourBanner.setAttribute("y", "1500");
                         tourBanner.setAttribute("width", "950");
                     }
-                    // ---------------------------------------
                 }
             }
             mediaQuery.addEventListener("change", handleOrientationChange);
@@ -1348,7 +1303,6 @@
                 }
             }
 
-            // --- TRIGGER PENTRU PASUL 2: HOVER PE C3 ---
             const c3Triggers = document.querySelectorAll('[data-type="button"][data-ch="3"]');
             c3Triggers.forEach(c3Trigger => {
                 c3Trigger.addEventListener('mouseenter', () => {
@@ -1368,7 +1322,6 @@
                 });
             });
 
-            // --- TRIGGER PENTRU PASUL 4: CLICK PE C2 (Rămâne neschimbat) ---
             const c2Triggers = document.querySelectorAll('[data-type="button"][data-ch="2"]');
             c2Triggers.forEach(c2Trigger => {
                 c2Trigger.addEventListener('click', () => {
@@ -1487,9 +1440,7 @@
 
             function doPuffAnimation(channelGroup, maskHole, chNum, isDemoMode = false) {
                 window.puffingChannel = chNum;
-                
                 clearHoverEffects(); clearAllHighlights();
-                
                 document.body.classList.add('puffing'); 
                 if (isDemoMode) document.body.classList.add('demo-puff-active'); 
                 
@@ -1560,7 +1511,6 @@
                         if(eticB1) eticB1.style.opacity = "0.3"; 
                     }
                 };
-                
                 btnB1.addEventListener("pointerdown", pressB1);
                 btnB1.addEventListener("pointerup", releaseB1);
                 btnB1.addEventListener("pointerleave", releaseB1);
@@ -1582,7 +1532,6 @@
                         if(eticB1Hold) eticB1Hold.style.opacity = "1";
                         if(btnB1) btnB1.classList.add("pressed"); 
                         if(eticB1) eticB1.style.opacity = "1";
-                        
                         processB1Press();
                         
                         remainingSeconds = 5;
@@ -1595,12 +1544,8 @@
                         b1HoldInterval = setInterval(() => {
                             remainingSeconds--;
                             if(b1HoldTimerEl) {
-                                if(remainingSeconds > 0) {
-                                    b1HoldTimerEl.textContent = remainingSeconds + "s";
-                                } else {
-                                    b1HoldTimerEl.textContent = "";
-                                    b1HoldTimerEl.style.display = "none";
-                                }
+                                if(remainingSeconds > 0) b1HoldTimerEl.textContent = remainingSeconds + "s";
+                                else { b1HoldTimerEl.textContent = ""; b1HoldTimerEl.style.display = "none"; }
                             }
                         }, 1000);
 
@@ -1612,10 +1557,7 @@
                             if(eticB1Hold) eticB1Hold.style.opacity = "0.3";
                             if(btnB1) btnB1.classList.remove("pressed"); 
                             if(eticB1) eticB1.style.opacity = "0.3";
-                            if(b1HoldTimerEl) {
-                                b1HoldTimerEl.textContent = "";
-                                b1HoldTimerEl.style.display = "none";
-                            }
+                            if(b1HoldTimerEl) { b1HoldTimerEl.textContent = ""; b1HoldTimerEl.style.display = "none"; }
                             if(b1HoldInterval) { clearInterval(b1HoldInterval); b1HoldInterval = null; }
                             b1HoldTimeout = null;
                         }, 5000); 
@@ -1627,10 +1569,7 @@
                         if(eticB1Hold) eticB1Hold.style.opacity = "0.3";
                         if(btnB1) btnB1.classList.remove("pressed"); 
                         if(eticB1) eticB1.style.opacity = "0.3";
-                        if(b1HoldTimerEl) {
-                            b1HoldTimerEl.textContent = "";
-                            b1HoldTimerEl.style.display = "none";
-                        }
+                        if(b1HoldTimerEl) { b1HoldTimerEl.textContent = ""; b1HoldTimerEl.style.display = "none"; }
                     }
                 };
                 hitB1HoldElement.addEventListener("pointerdown", toggleHoldB1);
@@ -1691,7 +1630,6 @@
                         if(mouse) mouse.style.opacity = '0';
                         document.body.classList.remove('hide-cursor');
 
-                        // Activează starea ON a butoanelor și pornește automatizarea instantaneu
                         window.isMasterAutOn = true;
                         if(window.isMasterAutOn) document.body.classList.remove("master-off");
                         else document.body.classList.add("master-off");
@@ -1714,7 +1652,6 @@
                                 window.pumpPurged = [false, false, false, false]; 
                                 window.purjareIntrerupta = false;
                                 
-                                // PORNIM ASISTENTUL!
                                 if (window.GhidInteligent) window.GhidInteligent.init();
                             }, 1000); 
                         }, 3000); 
@@ -1744,7 +1681,6 @@
                     updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn); 
                     syncPanelVisuals(); 
 
-                    // Trecere la Pasul 2 după 2 secunde
                     if (currentTourStep === 1) {
                         const ledBtn = document.getElementById('buton_master_led');
                         if(ledBtn) ledBtn.classList.remove('flash-intense');
@@ -1772,32 +1708,7 @@
             updateToggleVisuals("buton_master_led", "led_on_icon", "led_off_icon", window.isMasterLedOn);
             syncPanelVisuals();
 
-            // Pornire tur Pasul 1
             runTourStep1();
-
-            // Helper position functions
-            function getMousePos(target) {
-                const isMobile = window.matchMedia("(max-width: 1000px) and (orientation: landscape)").matches;
-                switch(target) {
-                    case 'START_1': return 'translate(4500px, 2000px)';
-                    case 'LED': return isMobile ? 'translate(6690px, 2450px)' : 'translate(6060px, 2660px)';
-                    case 'BANNER_START': return isMobile ? 'translate(6500px, 600px)' : 'translate(5400px, 1900px)';
-                    case 'C1': return 'translate(270px, 2511px)';
-                    case 'I1': return 'translate(320px, 1645px)';
-                    case 'A1': return 'translate(186px, 553px)';
-                    case 'USB': return 'translate(2230px, 150px)';
-                    case 'B1_HOLD': return isMobile ? 'translate(6185px, 1900px)' : 'translate(5803px, 1396px)';
-                    case 'C3': return 'translate(4144px, 2511px)';
-                    case 'INFO': return isMobile ? 'translate(1040px, 550px)' : 'translate(445px, 215px)';
-                    case 'C1_BTN': return 'translate(805px, 1843px)';
-                    case 'C3_BTN': return 'translate(4152px, 1851px)';
-                    case 'C4_BTN': return 'translate(4730px, 1854px)';
-                    case 'C2_BTN': return 'translate(1387px, 1842px)';
-                    case 'CENTER': return 'translate(3000px, 2511px)';
-                    case 'AUT': return isMobile ? 'translate(6490px, 2450px)' : 'translate(5970px, 2660px)';
-                    default: return 'translate(0px,0px)';
-                }
-            }
 
             function updateHardwareVisuals(now, elapsed) {
                 if (!window.isMasterAutOn || window.puffingChannel !== -1) return; 
@@ -2034,7 +1945,6 @@
                     }
                 }
                 
-                // === Apelăm verificarea pentru Ghidul Inteligent (Asistentul) ===
                 if (window.GhidInteligent) window.GhidInteligent.checkState();
                 
             }, 150); 
