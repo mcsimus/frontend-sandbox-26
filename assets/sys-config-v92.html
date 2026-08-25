@@ -312,14 +312,14 @@
             #ghid-contextual-group { display: none !important; }
             #show-guide-btn-fo { display: none !important; }
             
-            /* ADAPTARE BANNER DE TUR PENTRU MOBIL (Se muta pe LCD) */
+            /* ADAPTARE BANNER DE TUR PENTRU MOBIL */
             #tour-banner-wrapper {
-                padding: 15px !important;
-                border-width: 5px !important;
-                gap: 10px !important;
-                min-height: auto !important;
+                padding: 15px !important;      /* Marginea interioară a bannerului mai mică */
+                border-width: 5px !important;  /* Marginea transparentă mai subțire */
+                gap: 10px !important;          /* Spațiul dintre buline, text și buton mai mic */
+                min-height: auto !important;   /* Permite bannerului să se micșoreze cât are nevoie */
             }
-            #tour-text { font-size: 32px !important; }
+            #tour-text { font-size: 32px !important; } /* <--- AICI ESTE MĂRIMEA TEXTULUI PE MOBIL */
             #tour-skip-btn { font-size: 26px !important; padding: 10px 30px !important; }
             .tour-dot { width: 20px !important; height: 20px !important; }
             .tour-dot.active { width: 26px !important; height: 26px !important; }
