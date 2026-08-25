@@ -252,75 +252,40 @@
             .header, .interactive-container { display: none !important; }
         }
 
-        /* 📱 Varianta dedicată doar pentru Telefoane în mod Landscape (sub 900px) */
-      @media screen and (max-width: 900px) and (orientation: landscape) {
-          .header { display: none !important; }
-          body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
-          .aspect-wrapper {
-              position: relative; 
-              width: 100%; height: auto; 
-              max-width: 100%; max-height: 100%;
-              aspect-ratio: 6561.51 / 3109.91; 
-              border: none; border-radius: 0; box-shadow: none; background: transparent;
-              display: flex; justify-content: center; align-items: center;
-          }
-
-          #tour-banner {
-              top: 18% !important;
-              left: 78.5% !important;
-              width: 21% !important;
-              transform: translate(-50%, -50%) !important;
-              padding: 0.8% 0.6% !important;
-          }
-          #tour-text {
-              font-size: clamp(0.45rem, 0.65vw, 0.65rem) !important;
-          }
-
-          .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
-          .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
-          .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
-          .tooltip-title { font-size: 13px; margin-bottom: 4px; }
-          .tooltip-desc { font-size: 11px; line-height: 1.2; }
-      }
-	  
-	  /* 📟 Afișare desktop încadrată cu spații negre (margini) pe tabletă */
-        @media screen and (min-width: 901px) and (max-width: 1400px) and (orientation: landscape) {
-            body { 
-                background-color: #000000 !important; /* Marginile negre exterioare */
-                margin: 0 !important;
-                padding: 1.5vh 3vw !important; /* Spațiul negru din jur */
-                height: 100vh !important; 
-                height: 100dvh !important; 
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                overflow: hidden !important;
-            }
-            .header { 
-                flex-shrink: 0 !important; 
-                margin-bottom: 1vh !important; 
-            }
-            .interactive-container {
-                flex-grow: 1 !important;
-                width: 100% !important;
-                /* Blochează lățimea maximă respectând exact raportul SVG-ului pentru a lăsa spații negre laterale corecte */
-                max-width: calc((100vh - 90px) * (6561.51 / 3109.91)) !important; 
-                display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
-            }
+        @media screen and (max-width: 1000px) and (orientation: landscape) {
+            .header { display: none !important; }
+            body { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
             .aspect-wrapper {
-                width: 100% !important;
-                height: 100% !important;
-                max-width: 100% !important;
-                max-height: 100% !important;
-                aspect-ratio: 6561.51 / 3109.91 !important;
-                border: 3px solid #1e293b;
-                border-radius: 12px;
-                box-shadow: 0 15px 50px rgba(0,0,0,0.8);
-                background: #0f172a;
+                position: relative; 
+                width: 100%; height: auto; 
+                max-width: 100%; max-height: 100%;
+                aspect-ratio: 6561.51 / 3109.91; 
+                border: none; 
+                border-radius: 0; 
+                box-shadow: none; 
+                background: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+
+            /* Poziționare banner pe mobil landscape exact peste LCD */
+            #tour-banner {
+                top: 18% !important;
+                left: 78.5% !important;
+                width: 21% !important;
+                transform: translate(-50%, -50%) !important;
+                padding: 0.8% 0.6% !important;
+            }
+            #tour-text {
+                font-size: clamp(0.45rem, 0.65vw, 0.65rem) !important;
+            }
+            
+            .tooltip-card { padding: 8px 12px; max-width: 320px; bottom: 3vh; gap: 10px; }
+            .tooltip-tag { width: 32px; height: 32px; font-size: 12px; }
+            .tooltip-tag.usb-shape { width: 50px; font-size: 11px; }
+            .tooltip-title { font-size: 13px; margin-bottom: 4px; }
+            .tooltip-desc { font-size: 11px; line-height: 1.2; }
         }
     </style>
 </head>
@@ -840,7 +805,7 @@
                 updateInfoSwitchVisuals();
             }
             
-            const mediaQuery = window.matchMedia("(max-width: 900px) and (orientation: landscape)");
+            const mediaQuery = window.matchMedia("(max-width: 1000px) and (orientation: landscape)");
             
             function handleOrientationChange(e) {
                 const mainSvg = document.querySelector('.overlay-svg');
