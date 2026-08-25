@@ -318,17 +318,29 @@
                 border-width: 5px !important;  
                 gap: 10px !important;          
                 min-height: auto !important;  
-			/* === ADĂUGAT / MODIFICAT PENTRU A BLOCA MIȘCAREA === */
-					height: 380px !important;      /* Îi impunem o înălțime fixă indiferent de text */
-					max-height: 380px !important;
-					justify-content: center !important; /* Centrează conținutul pe verticală în interior */
-					overflow: hidden !important;   /* Ascunde textul în plus dacă depășește spațiul */
-							
+			    /* === ADĂUGAT / MODIFICAT PENTRU A BLOCA MIȘCAREA === */
+                height: 380px !important;      /* Îi impunem o înălțime fixă indiferent de text */
+                max-height: 380px !important;
+                justify-content: center !important; /* Centrează conținutul pe verticală în interior */
+                overflow: hidden !important;   /* Ascunde textul în plus dacă depășește spațiul */
             }
             #tour-text { font-size: 80px !important; } 
             #tour-skip-btn { font-size: 48px !important; padding: 10px 30px !important; }
             .tour-dot { width: 40px !important; height: 40px !important; }
             .tour-dot.active { width: 40px !important; height: 40px !important; }
+			
+			/* === SETĂRI NOI PENTRU BUTONUL MANUAL PE MOBIL === */
+            #manual-rect {
+                width: 360px !important;   /* Micșorezi lungimea (original era 480px) */
+                height: 80px !important;   /* Micșorezi înălțimea (original era 110px) */
+                rx: 40px !important;       /* Ajustezi rotunjirea colțurilor proporțional */
+            }
+
+            #manual-text {
+                font-size: 40px !important; /* Micșorezi textul (original era 56px) */
+                x: 180px !important;        /* Centrează textul pe noua lățime de 360px (360 / 2 = 180) */
+                y: 52px !important;         /* Centrează textul pe noua înălțime de 80px */
+            }
         }
     </style>
 </head>
@@ -520,13 +532,7 @@
                         <g id="lcd_grup_sus" class="fade-element" pointer-events="none">
                             <rect class="hitbox t-trigger" data-type="lcd" x="5560.94" y="279.05" width="964.84" height="392.1" fill="transparent" pointer-events="all"/>
                             
-                            <a href="https://atb.mcsimus.ro/manual" target="_blank" title="pentru documentatia detaliata a utilizarii dati click" pointer-events="all" style="cursor: pointer;">
-                                <g transform="translate(5803, 140)">
-                                    <rect x="0" y="0" width="480" height="110" rx="55" fill="rgba(15, 23, 42, 0.85)" stroke="#38bdf8" stroke-width="4"/>
-                                    <text x="240" y="72" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="900" font-size="56px" text-anchor="middle" letter-spacing="2">MANUAL</text>
-                                </g>
-                            </a>
-
+                            
                             <polygon fill="#2B2A29" points="6525.78,279.05 6525.78,671.15 5560.94,671.15 5560.94,279.05 "/>
                             <polygon fill="#0792F4" fill-rule="nonzero" points="6484,320.83 6484,629.37 5602.72,629.37 5602.72,320.83 "/>
                             
@@ -537,6 +543,15 @@
                                 <text id="lcd-r3" x="0" y="210" textLength="830" lengthAdjust="spacingAndGlyphs" xml:space="preserve">                   </text>
                             </g>
                         </g>
+						
+						<a href="https://atb.mcsimus.ro/manual" target="_blank" title="pentru documentatia detaliata a utilizarii dati click" pointer-events="all" style="cursor: pointer;">
+                                <g id="btn-manual-mobil" transform="translate(5803, 140)">
+
+										<rect x="0" y="0" width="480" height="110" rx="55" fill="rgba(15, 23, 42, 0.85)" stroke="#38bdf8" stroke-width="4"/>
+										<text x="240" y="72" fill="#38bdf8" font-family="'Inter', sans-serif" font-weight="900" font-size="56px" text-anchor="middle" letter-spacing="2">MANUAL</text>
+</g>
+                                </g>
+                            </a>
                         
                         <g id="butoane_sus">
                             <ellipse id="b1" class="t-trigger" data-type="b1" fill="#FA0A0A" cx="5803.6" cy="1045.76" rx="34.31" ry="34.15" stroke="transparent" stroke-width="100"/>
@@ -1141,6 +1156,11 @@
                     
                     if (lcdGrup) lcdGrup.setAttribute("transform", "translate(-6140, -380) scale(2.1)");
                     
+                    // === COBORÂRE BUTON MANUAL CU 50% DIN ÎNĂLȚIME PE MOBIL ===
+                    const btnManualMobil = document.getElementById("btn-manual-mobil");
+                    if (btnManualMobil) btnManualMobil.setAttribute("transform", "translate(6300, 195)");
+                    // ==========================================================
+                    
                     const tourBanner = document.getElementById("tour-banner-fo");
                     if (tourBanner) {
                         tourBanner.setAttribute("x", "5660");
@@ -1169,6 +1189,12 @@
                     if (panouBgRect) panouBgRect.setAttribute("width", "1033.11");
                     
                     if (lcdGrup) lcdGrup.removeAttribute("transform");
+                    
+                    // === REVENIRE LA POZIȚIA NORMALĂ PE DESKTOP ===
+                    const btnManualMobil = document.getElementById("btn-manual-mobil");
+                    if (btnManualMobil) btnManualMobil.setAttribute("transform", "translate(5803, 140)");
+                    // ============================================
+
                     if (btnSus) btnSus.removeAttribute("transform");
                     if (btnJos) btnJos.removeAttribute("transform");
                     if (hitB1Hold) hitB1Hold.removeAttribute("transform");
