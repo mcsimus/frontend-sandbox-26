@@ -1119,11 +1119,21 @@
         function toggleLandscape(btn) {
             const page = btn.closest('.a4-page');
             page.classList.toggle('landscape-mode');
+            
             if(page.classList.contains('landscape-mode')) {
                 btn.innerHTML = '🔄 Vizualizare Portret';
             } else {
                 btn.innerHTML = '🔄 Rotire Landscape';
             }
+            
+            // Aduce automat pagina rotită exact pe mijlocul ecranului utilizatorului
+            setTimeout(() => {
+                page.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center', 
+                    inline: 'center' 
+                });
+            }, 150); // Un mic delay de 150ms asigură aplicarea rotației CSS înainte de centrare
         }
         
         function toggleZoom(btn) {
