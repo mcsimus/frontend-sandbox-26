@@ -1135,16 +1135,17 @@
                 page.style.overflow = 'visible';
                 btn.innerHTML = '❌ Închide Zoom';
                 
-                // Poziționare fixă pe centru-sus, perfect vizibilă pe orice ecran/tabletă
+                // Poziționare fixă în colțul INFERIOR-DREAPTA și dimensiuni reduse cu 50%
                 btn.style.position = 'fixed';
-                btn.style.top = '15px';
-                btn.style.left = '50%';
-                btn.style.right = 'auto';
-                btn.style.transform = 'translateX(-50%)';
-                btn.style.padding = '10px 22px';
-                btn.style.fontSize = '14px';
+                btn.style.bottom = '15px';
+                btn.style.right = '15px';
+                btn.style.top = 'auto';
+                btn.style.left = 'auto';
+                btn.style.transform = 'none';
+                btn.style.padding = '5px 11px';     // Redus la jumătate față de original
+                btn.style.fontSize = '8px';       // Redus la jumătate față de original
                 btn.style.zIndex = '1100';
-                btn.style.boxShadow = '0 4px 15px rgba(0,0,0,0.4)';
+                btn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
             } else {
                 page.style.overflow = 'hidden';
                 btn.innerHTML = '🔍 Zoom x2';
@@ -1153,6 +1154,7 @@
                 btn.style.position = 'absolute';
                 btn.style.top = '6px';
                 btn.style.right = '6px';
+                btn.style.bottom = 'auto';
                 btn.style.left = 'auto';
                 btn.style.transform = 'none';
                 btn.style.padding = '4px 8px';
