@@ -422,6 +422,445 @@
         .compact-table th {
             font-size: 8.5px !important;
         }
+    
+        /* === EXTRA STYLES FOR PAGE 8 (FISA TEHNICA AROME / ANEXA 3) === */
+        :root {
+            --text-muted: #64748b;
+            --warning-color: #f59e0b;
+            --c1-mov: #7e22ce;
+            --c1-mov-bg: #faf5ff;
+            --c1-mov-border: #d8b4fe;
+            --c2-teal: #0d9488;
+            --c2-teal-bg: #f0fdfa;
+            --c2-teal-border: #99f6e4;
+            --c3-bordo: #b91c1c;
+            --c3-bordo-bg: #fef2f2;
+            --c3-bordo-border: #fca5a5;
+            --c4-auriu: #d97706;
+            --c4-auriu-bg: #fffbeb;
+            --c4-auriu-border: #fde68a;
+        }
+
+        .a4-page.page-arome {
+            padding: 6.5mm 10mm 12mm 10mm !important;
+            box-sizing: border-box !important;
+        }
+        .a4-page.page-arome .page-border {
+            padding: 7.5px 13px !important;
+            justify-content: space-between !important;
+            box-sizing: border-box !important;
+        }
+        .page-footer.page-footer-centered {
+            justify-content: center !important;
+        }
+        /* Elimina complet paginatia pe pagina 8 */
+        .page-footer.page-footer-centered::after,
+        .a4-page.page-arome .page-footer::after {
+            content: none !important;
+            display: none !important;
+            counter-increment: none !important;
+        }
+        .page-footer.page-footer-centered .footer-logo svg {
+            height: 30px !important;
+            width: auto !important;
+            display: block;
+        }
+
+        
+        
+        
+        
+        
+
+        /* BUTON PRINTARE FLOTANT (ecran) */
+        
+        
+
+        /* FOAIA A4 */
+        
+
+        /* CHENARUL IDENTIC CU MANUALUL DE UTILIZARE */
+        
+
+        /* HEADER DOCUMENT */
+        .doc-header {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 2.5px;
+            margin-bottom: 3.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .doc-title h1 {
+            color: var(--primary-color);
+            font-size: 14.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 1px;
+        }
+        .doc-title p {
+            font-size: 9px;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin: 0;
+        }
+        .doc-badge {
+            text-align: right;
+            font-size: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 2px 7px;
+            border-radius: 4px;
+            line-height: 1.25;
+            color: #334155;
+        }
+
+        /* BANNER PRODUCATOR / CLIENT FINAL */
+        .general-info-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-left: 3.5px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 3px 9px;
+            margin-bottom: 3.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            line-height: 1.30;
+        }
+        .info-item {
+            display: flex;
+            gap: 5px;
+        }
+        .info-label {
+            color: #64748b;
+            font-weight: 600;
+        }
+        .info-value {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* TITLURI SECTIUNI */
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 1.5px solid var(--border-color);
+            padding-bottom: 1px;
+            margin: 2px 0 3.5px 0;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-num {
+            background: var(--primary-color);
+            color: white;
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        /* 1. GRID CANALE AROME */
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4.5px;
+            margin-bottom: 3.5px;
+        }
+        .channel-card {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 3.5px 7.5px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .channel-card.c1 { border-left: 4px solid var(--c1-mov); background: var(--c1-mov-bg); }
+        .channel-card.c2 { border-left: 4px solid var(--c2-teal); background: var(--c2-teal-bg); }
+        .channel-card.c3 { border-left: 4px solid var(--c3-bordo); background: var(--c3-bordo-bg); }
+        .channel-card.c4 { border-left: 4px solid var(--c4-auriu); background: var(--c4-auriu-bg); }
+
+        .ch-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1px;
+        }
+        .ch-name {
+            font-size: 10.2px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .ch-led-pill {
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+        .c1 .ch-led-pill { background: var(--c1-mov); }
+        .c2 .ch-led-pill { background: var(--c2-teal); }
+        .c3 .ch-led-pill { background: var(--c3-bordo); }
+        .c4 .ch-led-pill { background: var(--c4-auriu); }
+
+        .ch-prop {
+            font-size: 8.8px;
+            color: #334155;
+            line-height: 1.23;
+            margin-bottom: 1px;
+        }
+        .ch-prop strong {
+            color: var(--primary-color);
+        }
+
+        .hazard-tags {
+            display: flex;
+            gap: 3.5px;
+            margin-top: 1.5px;
+            align-items: center;
+        }
+        .h-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.6px;
+            font-weight: 700;
+            padding: 0 4px;
+            border-radius: 2px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            display: inline-block;
+        }
+        .h-tag.warn { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .h-tag.env { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+
+        /* LEGENDA FRAZE DE PERICOL CLP */
+        .hazard-legend {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 4px;
+            padding: 3px 8.5px;
+            margin-bottom: 3.5px;
+        }
+        .legend-header {
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-size: 8px;
+            letter-spacing: 0.4px;
+            margin-bottom: 1.5px;
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4.5px;
+            font-size: 8.2px;
+            line-height: 1.20;
+            color: #475569;
+        }
+        .legend-item:last-child {
+            grid-column: span 2;
+        }
+        .legend-desc {
+            color: #334155;
+        }
+        .legend-alert {
+            margin-top: 2.5px;
+            padding-top: 2px;
+            border-top: 1px dotted #cbd5e1;
+            font-size: 7.9px;
+            line-height: 1.22;
+            color: #475569;
+        }
+        .legend-alert strong {
+            color: var(--primary-color);
+        }
+
+        /* 2. RAPORT DILUTIE & COMPATIBILITATE */
+        .dilution-summary-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left: 3.5px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 4.5px 9px;
+            margin-bottom: 3.5px;
+            font-size: 8.9px;
+            line-height: 1.27;
+        }
+        .dilution-note strong {
+            color: var(--primary-color);
+        }
+        .dilution-note em {
+            color: #0369a1;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* 3. ATENTIONARI COMUNE SI SIGURANTA IN FUNCTIONARE */
+        .callout {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-left: 3.5px solid var(--success-color);
+            border-radius: 4px;
+            padding: 4.5px 9px;
+            margin-bottom: 3.5px;
+            font-size: 8.9px;
+            line-height: 1.28;
+            color: #334155;
+        }
+        .callout strong {
+            color: var(--primary-color);
+        }
+
+        /* 4. CURATARE SI COMPATIBILITATE MATERIALE */
+        .section-intro {
+            font-size: 8.8px;
+            line-height: 1.25;
+            color: #475569;
+            margin-bottom: 3px;
+        }
+        .zones-summary-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4.5px;
+            margin-bottom: 3.5px;
+        }
+        .zone-pill {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 3px;
+            padding: 3px 6px;
+            font-size: 8.4px;
+            line-height: 1.22;
+        }
+        .zone-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 1px;
+            font-size: 8.8px;
+        }
+        .zone-mats {
+            font-weight: 600;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 1px;
+        }
+        .zone-desc {
+            color: #475569;
+            display: block;
+            font-size: 8.1px;
+        }
+
+        .cleaning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4.5px;
+        }
+        .clean-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 4px 6.5px;
+            display: flex;
+            flex-direction: column;
+        }
+        .clean-card h4 {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .badge-prohibit {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            font-size: 7.2px;
+            font-weight: 800;
+            padding: 1px 3.5px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .badge-ok {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            font-size: 7.2px;
+            font-weight: 800;
+            padding: 1px 3.5px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .clean-zone-ref {
+            font-size: 7.8px;
+            color: #64748b;
+            margin-bottom: 2px;
+            font-style: italic;
+        }
+        .clean-card ul {
+            padding-left: 10px;
+            margin: 0;
+        }
+        .clean-card li {
+            font-size: 8.4px;
+            line-height: 1.23;
+            margin-bottom: 1.5px;
+            color: #334155;
+        }
+        .clean-card li strong {
+            color: var(--primary-color);
+        }
+
+        /* FOOTER CU DATE TEHNICE */
+        .doc-footer {
+            margin-top: 3px;
+            padding-top: 2px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.1px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        /* PRINT MEDIA IDENTIC CU MANUAL.HTML */
+        @media print { 
+            @page { 
+                size: A4 portrait; 
+                margin: 0; 
+            }
+             
+            
+            
+            
+            
+            
+        }
+    
     </style>
 </head>
 <body>
@@ -1621,7 +2060,256 @@
             </a>
         </div>
     </div>
-        <script>
+        
+    <!-- ==================== PAGINA 8 (ANEXA 3 - FISA TEHNICA LICHIDE) ==================== -->
+    <div class="a4-page page-arome">
+        <div class="page-border">
+            <!-- HEADER -->
+            <div class="doc-header">
+                <div class="doc-title">
+                    <h1>ANEXA 3: Fișa Tehnică Lichide Utilizate la AromaBar V5</h1>
+                    <p>Sistem Automat de Aromaterapie cu Nebulizare • 4 Canale</p>
+                </div>
+                <div class="doc-badge">
+                    <strong>REF: FT-AB5-2026</strong><br>
+                    Ediție: Rev. 2.0<br>
+                    Status: Validat
+                </div>
+            </div>
+
+            <!-- INFORMAȚII ANSAMBLU & PRODUCĂTOR / CLIENT FINAL -->
+            <div class="general-info-box">
+                <div class="info-item">
+                    <span class="info-label">Producător ansamblu Aroma Bar:</span>
+                    <span class="info-value">Plasty Prod SA</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Client final & Furnizor arome:</span>
+                    <span class="info-value">J.T. INTERNATIONAL (ROMANIA) S.R.L.</span>
+                </div>
+            </div>
+
+            <!-- 1. MAPARE CANALE ȘI AROME -->
+            <div>
+                <div class="section-title">
+                    <span class="sec-num">1</span> Mapare Canale & Arome Comerciale
+                </div>
+                
+                <div class="channels-grid">
+                    <!-- Canal 1 -->
+                    <div class="channel-card c1">
+                        <div class="ch-header">
+                            <div class="ch-name">Canal 1 (C1): WildBerry</div>
+                            <span class="ch-led-pill">LED Mov</span>
+                        </div>
+                        <div class="ch-prop"><strong>Esență:</strong> Raspberry (Zmeură)</div>
+                        <div class="ch-prop"><strong>Notă Olfactivă:</strong> Fructată, dulce (zmeură și fructe roșii).</div>
+                        <div class="ch-prop"><strong>Comportament:</strong> Densitate medie, solubilizare uniformă în micro-emulsie.</div>
+                        <div class="hazard-tags">
+                            <span class="h-tag warn">H319</span>
+                        </div>
+                    </div>
+
+                    <!-- Canal 2 -->
+                    <div class="channel-card c2">
+                        <div class="ch-header">
+                            <div class="ch-name">Canal 2 (C2): Arctic Mint</div>
+                            <span class="ch-led-pill">LED Teal</span>
+                        </div>
+                        <div class="ch-prop"><strong>Esență:</strong> Medina Mint (Mentă)</div>
+                        <div class="ch-prop"><strong>Notă Olfactivă:</strong> Fresh, răcoritoare, mentolată intensă.</div>
+                        <div class="ch-prop"><strong>Comportament:</strong> Foarte volatil, cel mai rapid atomizabil, difuzie curată.</div>
+                        <div class="hazard-tags">
+                            <span class="h-tag">H315</span>
+                            <span class="h-tag">H317</span>
+                            <span class="h-tag warn">H319</span>
+                            <span class="h-tag env">H411</span>
+                        </div>
+                    </div>
+
+                    <!-- Canal 3 -->
+                    <div class="channel-card c3">
+                        <div class="ch-header">
+                            <div class="ch-name">Canal 3 (C3): Winter Apple</div>
+                            <span class="ch-led-pill">LED Bordo</span>
+                        </div>
+                        <div class="ch-prop"><strong>Esență:</strong> Apple & Berries (Mere & Fructe de pădure)</div>
+                        <div class="ch-prop"><strong>Notă Olfactivă:</strong> Fructată, aromă de măr copt și fructe de pădure.</div>
+                        <div class="ch-prop"><strong>Comportament:</strong> Vâscozitate ridicată; formează micro-emulsie stabilă cu surfactant.</div>
+                        <div class="hazard-tags">
+                            <span class="h-tag">H317</span>
+                            <span class="h-tag warn">H319</span>
+                            <span class="h-tag env">H411</span>
+                        </div>
+                    </div>
+
+                    <!-- Canal 4 -->
+                    <div class="channel-card c4">
+                        <div class="ch-header">
+                            <div class="ch-name">Canal 4 (C4): Zesty Pear</div>
+                            <span class="ch-led-pill">LED Auriu</span>
+                        </div>
+                        <div class="ch-prop"><strong>Esență:</strong> Pear 6 Zest 2 (Pară & Coajă de citrice)</div>
+                        <div class="ch-prop"><strong>Notă Olfactivă:</strong> Proaspătă, pară zemoasă și accente citrice.</div>
+                        <div class="ch-prop"><strong>Comportament:</strong> Fluiditate bună, emulsionare facilă cu surfactant.</div>
+                        <div class="hazard-tags">
+                            <span class="h-tag">H304</span>
+                            <span class="h-tag">H315</span>
+                            <span class="h-tag">H317</span>
+                            <span class="h-tag warn">H319</span>
+                            <span class="h-tag env">H411</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legenda Fraze de Pericol CLP (Ordonate Crescător) -->
+                <div class="hazard-legend">
+                    <div class="legend-header">Legendă</div>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <span class="h-tag">H304</span>
+                            <span class="legend-desc">Poate fi mortal în caz de înghițire și/ sau de pătrundere în căile respiratorii</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="h-tag">H315</span>
+                            <span class="legend-desc">Provoacă iritarea pielii (Iritație cutanată)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="h-tag">H317</span>
+                            <span class="legend-desc">Poate provoca o reacție alergică a pielii (Alergie cutanată)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="h-tag warn">H319</span>
+                            <span class="legend-desc">Provoacă o iritare gravă a ochilor (Iritație oculară)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="h-tag env">H411</span>
+                            <span class="legend-desc">Toxic pentru mediul acvatic cu efecte pe termen lung</span>
+                        </div>
+                    </div>
+                    <div class="legend-alert">
+                        * <strong>Atenționare:</strong> Frazele de pericol (H304, H315, H317, H319, H411) corespund clasificării <strong>esențelor pure, în stare concentrată</strong>, conform Fișelor cu Date de Securitate (FDS) emise de producătorul aromelor. În exploatarea sistemului AromaBar, lichidul utilizat este o soluție de lucru diluată (raport de <strong>2 ml esență la 53 ml bază apoasă</strong>, reprezentând o concentrație volumică de cca. 3.6%), nivelul de expunere la compușii aromatici fiind proporțional cu acest grad de diluție.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. RAPORT RECOMANDAT DE DILUȚIE & COMPATIBILITATE TEHNICĂ -->
+            <div>
+                <div class="section-title">
+                    <span class="sec-num">2</span> Raport Recomandat de Diluție & Compatibilitate Tehnică
+                </div>
+
+                <div class="dilution-summary-card">
+                    <div class="dilution-note">
+                        <strong>Raport de încărcare per flacon (volum total: 55 ml):</strong><br>
+                        &bull; <strong>50 ml</strong> apă distilată<br>
+                        &bull; <strong>3 ml</strong> surfactant (Polysorbate 20)<br>
+                        &bull; <strong>2 ml</strong> esență concentrată<br><br>
+                        <em>Notă funcțională:</em> Diluarea în baza apoasă emulsionată este obligatorie exclusiv pentru buna funcționare a atomizoarelor, asigurând fluiditatea necesară dispersiei și prevenind colmatarea mecanică a micro-orificiilor de la atomizoare.<br><br>
+                        <em>Recomandare de exploatare:</em> Pentru păstrarea fidelității olfactive și prevenirea separării naturale a emulsiei sau a colmatării atomizoarelor, soluția diluată din flacoane se recomandă a fi reîmprospătată la un interval de maximum 40-60 de zile de la preparare, operațiunea de preparare, înlocuire și service fiind executată exclusiv de către personalul tehnic Plasty Prod S.A.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ATENȚIONĂRI COMUNE ȘI SIGURANȚĂ ÎN FUNCȚIONARE -->
+            <div>
+                <div class="section-title">
+                    <span class="sec-num">3</span> Atenționări Comune de Securitate & Siguranță în Funcționare
+                </div>
+
+                <div class="callout">
+                    <strong>Siguranța în Funcționare Ambientală (Nebulizare &amp; Temporizare Controlată):</strong><br>
+                    Prin raportul de diluție recomandat (2 ml esență la 53 ml soluții purtătoare) și limitarea electronică strictă a timpului de atomizare la impulsuri scurte (2 secunde puf, urmate obligatoriu de 4 secunde pauză), aparatul previne funcționarea continuă și acumularea excesivă de vapori în încăpere.
+                    <br><br>
+                    Aparatul are exclusiv rolul de dispersor mecanic temporizat. Esențele aromatice utilizate sunt puse la dispoziție direct de către clientul final,<br><span style="white-space: nowrap;"><strong>J.T. INTERNATIONAL (ROMANIA) S.R.L.</strong></span>, conformitatea chimică a acestora (conform standardelor internaționale IFRA și Regulamentului European REACH) fiind atestată prin Fișele cu Date de Securitate (FDS / SDS) aferente fiecărui sortiment de aromă, emise de producătorul esențelor.
+                </div>
+            </div>
+
+            <!-- 4. INSTRUCȚIUNI DE CURĂȚARE ȘI COMPATIBILITATE MATERIALE -->
+            <div>
+                <div class="section-title">
+                    <span class="sec-num">4</span> Instrucțiuni de Curățare & Compatibilitate Materiale
+                </div>
+
+                <p class="section-intro">
+                    Pentru conservarea integrității estetice și funcționale, <strong>elementele din zona atomizoarelor</strong> (expuse direct sau indirect la dispersia vaporilor de aromă) se vor curăța și întreține urmărind specificul fiecărui material component:
+                </p>
+
+                <!-- Cartografiere elemente / zone din perimetrul atomizoarelor -->
+                <div class="zones-summary-bar">
+                    <div class="zone-pill">
+                        <span class="zone-title">📍 Zona Meniu</span>
+                        <span class="zone-mats">Plexiglass • PVC Vopsit</span>
+                        <span class="zone-desc">Panoul frontal de selecție; se curăță delicat fără infiltrare de lichid la muchii.</span>
+                    </div>
+                    <div class="zone-pill">
+                        <span class="zone-title">📍 Atomizoare</span>
+                        <span class="zone-mats">PVC Vopsit</span>
+                        <span class="zone-desc">Duzele de evacuare ale pufurilor; se tamponează ușor pentru îndepărtarea condensului.</span>
+                    </div>
+                    <div class="zone-pill">
+                        <span class="zone-title">📍 Zona Inele Adresabile</span>
+                        <span class="zone-mats">Plexiglass • Tablă Vopsită</span>
+                        <span class="zone-desc">Dispersoarele optice și rama metalică; se curăță fără alcool și se usucă imediat.</span>
+                    </div>
+                </div>
+
+                <!-- Reguli de curățare pe materiale -->
+                <div class="cleaning-grid">
+                    <!-- Plexiglass -->
+                    <div class="clean-card" style="border-left: 3.5px solid #ef4444;">
+                        <h4>
+                            <span>Plexiglass</span>
+                            <span class="badge-prohibit">STRICT FĂRĂ ALCOOL</span>
+                        </h4>
+                        <div class="clean-zone-ref">Prezent în: <strong>Zona Meniu</strong>, <strong>Zona Inele Adresabile</strong></div>
+                        <ul>
+                            <li><strong>INTERZIS TOTAL:</strong> Alcool etilic, alcool izopropilic (IPA), acetonă, diluanți sau soluții de geamuri cu alcool. Acestea pot provoca micro-fisuri casante instantanee și mătuire iremediabilă.</li>
+                            <li><strong>PROCEDURĂ RECOMANDATĂ:</strong> Se curăță <strong>exclusiv cu o cârpă moale din microfibră umezită cu apă</strong> sau <strong>șervețele igienizante umede certificate FĂRĂ ALCOOL</strong>. Ștergeți ușor, fără presiune mecanică ridicată, pentru a preveni mătuirea sau zgârierea suprafeței.</li>
+                            <li><strong>Uscare:</strong> Ștergeți delicat cu o lavetă uscată și curată din microfibră pentru eliminarea completă a oricărei urme de umiditate reziduală.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tabla Vopsita -->
+                    <div class="clean-card" style="border-left: 3.5px solid #0284c7;">
+                        <h4>
+                            <span>Tablă Vopsită / Metal</span>
+                            <span class="badge-ok">REZISTENT</span>
+                        </h4>
+                        <div class="clean-zone-ref">Prezentă în: <strong>Zona Inele Adresabile</strong>, Șasiu</div>
+                        <ul>
+                            <li><strong>PROCEDURĂ RECOMANDATĂ:</strong> Se curăță cu o cârpă umedă din microfibră. La urme persistente de condens sau amprente se poate folosi apă călduță cu puțin detergent neutru.</li>
+                            <li><strong>Uscare:</strong> Ștergeți imediat cu o lavetă uscată pentru a preveni petele sau depunerile minerale.</li>
+                        </ul>
+                    </div>
+
+                    <!-- PVC Vopsit -->
+                    <div class="clean-card" style="border-left: 3.5px solid #f59e0b;">
+                        <h4>
+                            <span>PVC Vopsit</span>
+                            <span class="badge-ok" style="background: #fef3c7; color: #92400e; border-color: #fde68a;">ATENȚIE LA VOPSEA</span>
+                        </h4>
+                        <div class="clean-zone-ref">Prezent în: <strong>Zona Meniu</strong>, <strong>Atomizoare</strong></div>
+                        <ul>
+                            <li><strong>PROCEDURĂ RECOMANDATĂ:</strong> Ștergere delicată cu o <strong>cârpă umedă din microfibră</strong> sau <strong>șervețele de igienizare fără alcool</strong>. Nu frecați agresiv și nu folosiți bureți abrazivi sau solvenți organici care pot afecta sau dizolva pelicula de vopsea.</li>
+                            <li><strong>Uscare:</strong> Ștergeți ușor cu o lavetă moale și uscată pentru îndepărtarea completă a peliculei umede.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="page-footer page-footer-centered">
+            <a href="https://www.plastyprod.ro" target="_blank" class="footer-logo" title="www.plastyprod.ro">
+                <svg viewBox="0 0 24.91 15.00">
+                    <use href="#plastyprod-logo-def"></use>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
         function toggleLandscape(btn) {
             const page = btn.closest('.a4-page');
             page.classList.toggle('landscape-mode');
